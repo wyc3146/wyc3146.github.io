@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>jvm_option_collection | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="JVM参数实用型，会影响运行时环境 堆大小   -Xms            初始堆大小，默认内存的1/64(1GB) -Xmx            最大堆大小，默认物理内存的1/4 (&amp;lt;1GB) -Xmn            年轻带大小 -XX:MinHeapFreeRatio=40        FullGC后如果老年代剩余容量小于40%则扩容,默认是40 -XX:MaxHeapF">
+<meta name="keywords" content="Java,JVM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jvm_option_collection">
+<meta property="og:url" content="http://yoursite.com/2017/03/08/jvm-option/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="JVM参数实用型，会影响运行时环境 堆大小   -Xms            初始堆大小，默认内存的1/64(1GB) -Xmx            最大堆大小，默认物理内存的1/4 (&amp;lt;1GB) -Xmn            年轻带大小 -XX:MinHeapFreeRatio=40        FullGC后如果老年代剩余容量小于40%则扩容,默认是40 -XX:MaxHeapF">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://wyc3146.github.io/img/jvm_gc_option.jpg">
+<meta property="og:updated_time" content="2018-06-06T12:32:02.704Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jvm_option_collection">
+<meta name="twitter:description" content="JVM参数实用型，会影响运行时环境 堆大小   -Xms            初始堆大小，默认内存的1/64(1GB) -Xmx            最大堆大小，默认物理内存的1/4 (&amp;lt;1GB) -Xmn            年轻带大小 -XX:MinHeapFreeRatio=40        FullGC后如果老年代剩余容量小于40%则扩容,默认是40 -XX:MaxHeapF">
+<meta name="twitter:image" content="https://wyc3146.github.io/img/jvm_gc_option.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-jvm-option" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/08/jvm-option/" class="article-date">
+  <time datetime="2017-03-08T13:20:30.000Z" itemprop="datePublished">2017-03-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JVM/">JVM</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      jvm_option_collection
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="JVM参数"><a href="#JVM参数" class="headerlink" title="JVM参数"></a>JVM参数</h1><h3 id="实用型，会影响运行时环境"><a href="#实用型，会影响运行时环境" class="headerlink" title="实用型，会影响运行时环境"></a>实用型，会影响运行时环境</h3><blockquote>
+<p>堆大小 </p>
+</blockquote>
+<p>-Xms            初始堆大小，默认内存的1/64(1GB)</p>
+<p>-Xmx            最大堆大小，默认物理内存的1/4 (&lt;1GB)</p>
+<p>-Xmn            年轻带大小</p>
+<p>-XX:MinHeapFreeRatio=40        FullGC后如果老年代剩余容量小于40%则扩容,默认是40</p>
+<p>-XX:MaxHeapFreeRatio=70        FullGC后如果老年代剩余容量大于70%则缩容,默认是70</p>
+<p>-XX:NewSize=5m                年轻带大小，和-Xmn同时存在则以-Xmn为主(hotspot 25.101-b13)</p>
+<p>-XX:MetaspaceSize            1.8以后的永久带大小初始值</p>
+<p>-XX:MaxMetaspaceSize        1.8以后的永久带最大值</p>
+<p>-XX:Xss=512k                    线程栈大小</p>
+<blockquote>
+<p>配合GC</p>
+</blockquote>
+<p>-XX:+DisableEx                屏蔽System.gc()</p>
+<p>-XX:MaxTenuringThreshold={n}        s区晋升最大次数</p>
+<p>-XX:CMSInitiatingOccupancyFraction={n}    CMS触发百分比</p>
+<p>-XX:+UseCMSCompactAtFullCollection        //CMS后进行碎片整理</p>
+<p>-XX:CMSFullGCsBeforeCompaction={n}        //CMS若干次后进行一次碎片</p>
+<p>-XX:ParalelCMSThreads                    //CMS线程数量</p>
+<p>-XX:ParalelGCThreads                        指定GC线程数量</p>
+<p>-XX:MaxGCPauseMills                        最大GC停顿时间</p>
+<p>-XX:GCTimeRatio                            垃圾收集时间占总时间的比</p>
+<p>大于3M的对象直接分配到old区,只能在ParNew和Serial使用,Parallel Scavenge不认识此参数</p>
+<p>-XX:Pretenuresizethreshold=3145728        </p>
+<p>每次Minor GC执行完以后，虚拟机会检查之前晋升到老年代的平均大小是否大于老年代的剩余空间大小，如果大于，则发起一次Full/Major GC，如果小于，则查看HandlePromotionFailure值是否允许担保失败，如果允许，那只会进行一次Minor GC。如果不允许失败，那么也要改为进行一次Full/Major GC</p>
+<p>-XX:+HandlePromotionFailure</p>
+<blockquote>
+<p>锁相关</p>
+</blockquote>
+<p>-XX:+DoEscapeAnalysis             开启逃逸分析</p>
+<p>-XX:+EliminateLocks                 锁消除,基于逃逸分析</p>
+<blockquote>
+<p>内存分配(<a href="http://www.cnblogs.com/java-zhao/p/5180492.html" target="_blank" rel="noopener">参考</a>)</p>
+</blockquote>
+<p> 在指针碰撞(Bump the Pointer)的内存分配方式中,为了防止每次给新对象分配内存都CAS申请内存,可以打开TLAB一次预先申请一小块内存给指定线程使用</p>
+<p> 另一种分配方式是空闲列表(Free List) ，空闲列表需要CAS吗？</p>
+<p>-XX:+UseTLAB                     打开本地线程分配缓冲区(Thread Local Allocation Buffer)</p>
+<p> 对象中的fields都是按照longs/doubles、ints、short/chars、bytes/booleans、opps(Ordianary Object Points)顺序分配的</p>
+<p>-XX:+CompactFields    将一些短类型插入header和long/doubles之间</p>
+<blockquote>
+<p>优化运行时环境</p>
+</blockquote>
+<p>-Xverify:none                        关闭字节码验证</p>
+<p>关闭方法热度衰减。在指定时间内方法调用次数达不到即时编译器编译的要求，就会把方法调用次数减半</p>
+<p>-XX:-UseCounterDecay            </p>
+<p>-XX:CounterHalfLifeTime            通过此参数设置半衰期时间，单位秒</p>
+<p>-XX:+PrintCompilation                打印被JIT编译的方法</p>
+<p>System.gc()是否参与GC统计,默认为false.JVM会根据统计数据自适应调整GC参数</p>
+<p>-XX:-UseAdaptiveSizePolicyWithSystemGC</p>
+<p>-agentlib:hprof=cpu=times,interval=10    采样统计各个方法占用cpu时长</p>
+<p>-XX:-UseGCOverheadLimit            提前预测JVM是否OOM</p>
+<h3 id="辅助型，辅助排查"><a href="#辅助型，辅助排查" class="headerlink" title="辅助型，辅助排查"></a>辅助型，辅助排查</h3><blockquote>
+<p>追踪初始化参数</p>
+</blockquote>
+<p>-XX:+PrintCommandLineFlags     打印用户指定的或者JVM根据环境自适应的参数</p>
+<p>-XX:+PrintFlagsFinal             初始化完成后打印参数</p>
+<blockquote>
+<p>GC日志</p>
+</blockquote>
+<p>-XX:+PrintGC</p>
+<p>-XX:+PrintGCDetails</p>
+<p>-XX:+PrintGCDateStamps</p>
+<p>-XX:+PrintHeapAtGC            在GC前后打印出Heap信息</p>
+<p>-Xloggc:f:\gc.log</p>
+<blockquote>
+<p>堆日志</p>
+</blockquote>
+<p>-XX:+HeapDumpOnOutOfMemoryError         OOM时导出堆到文件</p>
+<p>-XX:+HeapDumpPath                         堆导出的位置</p>
+<p>-XX:+OnOutOfMemoryError                 OOM时执行一个脚本</p>
+<blockquote>
+<p>verbose</p>
+</blockquote>
+<p>-verbose:class                打印出加载的class信息</p>
+<p>-verbose:gc                    打印出GC信息</p>
+<p>-verbose:jni                    打印出native方法调用的相关情况</p>
+<h3 id="命令查询"><a href="#命令查询" class="headerlink" title="命令查询"></a>命令查询</h3><p>jinfo -flag MaxTenuringThreshold {pid}        显示晋升阈值是多少，此命令可以查询当前JVM的某个参数</p>
+<h4 id="remarks"><a href="#remarks" class="headerlink" title="remarks:"></a>remarks:</h4><p><em>remark1</em></p>
+<p><a href="http://www.cnblogs.com/redcreen/archive/2011/05/04/2037057.html" target="_blank" rel="noopener">参考</a></p>
+<p><em>remark2</em></p>
+<p>著作权归作者所有。</p>
+<p>商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+<p>作者：匿名用户</p>
+<p>链接：<a href="http://www.zhihu.com/question/21367720/answer/19970887" target="_blank" rel="noopener">http://www.zhihu.com/question/21367720/answer/19970887</a></p>
+<p>来源：知乎</p>
+<p>挖个坑，如果有人赞，我就把某大型网站的jvm启动参数贴上来。谢赞，填坑。</p>
+<p>-server -Xmx2g -Xms2g -Xmn256m </p>
+<p>-XX:PermSize=128m -Xss256k </p>
+<p>-XX:+DisableExplicitGC </p>
+<p>-XX:+UseConcMarkSweepGC </p>
+<p>-XX:+CMSParallelRemarkEnabled </p>
+<p>-XX:+UseCMSCompactAtFullCollection </p>
+<p>-XX:LargePageSizeInBytes=128m </p>
+<p>-XX:+UseFastAccessorMethods </p>
+<p>-XX:+UseCMSInitiatingOccupancyOnly </p>
+<p>-XX:CMSInitiatingOccupancyFraction=70</p>
+<p>-Xmn和-Xmx之比大概是1:9，新生代内存太大会导致young gc时间较长，一个好的Web系统应该是每次http请求申请内存都能在young gc回收掉，full gc永不发生。所以xmn的值应该是保证够用（够http并发请求之用）的前提下最小。</p>
+<p><em>remark3</em></p>
+<p><img src="https://wyc3146.github.io/img/jvm_gc_option.jpg" alt=""></p>
+<p>JDK1.7 update14的GC，有连线代表可以搭配使用</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/03/08/jvm-option/" data-id="cji33eyip00049iopbzt5qswd" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JVM/">JVM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/03/09/java_class_init_/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          java_class_init
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/02/18/shell_read_and_create_dir/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">shell_read_and_create_dir</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JVM/">JVM</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shell/">Shell</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/netty/">netty</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/">Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/class/">class</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/netty/">netty</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Shell/" style="font-size: 10px;">Shell</a> <a href="/tags/class/" style="font-size: 10px;">class</a> <a href="/tags/netty/" style="font-size: 10px;">netty</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/06/06/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/13/netty_bytebuf/">Netty中的ByteBuf</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/12/bitwise_operation_in_java/">bitwise_operation_in_java</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/09/java_class_init_/">java_class_init</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/08/jvm-option/">jvm_option_collection</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

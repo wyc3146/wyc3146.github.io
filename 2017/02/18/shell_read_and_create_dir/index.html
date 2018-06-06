@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>shell_read_and_create_dir | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Shell遍历和创建目录 需求：现在有一个文件处理脚本，可以将一个文件按一定规则处理并输出。 接收两个参数：   $1，文件输出路径   $2，原文件路径现在需要写一个脚本，通过传递一个路径来把该路径下的所有文件都通过这个脚本处理并输出  my_bash.sh 是文件处理脚本名 123456789101112131415161718192021222324252627282930313233343">
+<meta name="keywords" content="Shell,Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="shell_read_and_create_dir">
+<meta property="og:url" content="http://yoursite.com/2017/02/18/shell_read_and_create_dir/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Shell遍历和创建目录 需求：现在有一个文件处理脚本，可以将一个文件按一定规则处理并输出。 接收两个参数：   $1，文件输出路径   $2，原文件路径现在需要写一个脚本，通过传递一个路径来把该路径下的所有文件都通过这个脚本处理并输出  my_bash.sh 是文件处理脚本名 123456789101112131415161718192021222324252627282930313233343">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-06-06T12:32:02.705Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="shell_read_and_create_dir">
+<meta name="twitter:description" content="Shell遍历和创建目录 需求：现在有一个文件处理脚本，可以将一个文件按一定规则处理并输出。 接收两个参数：   $1，文件输出路径   $2，原文件路径现在需要写一个脚本，通过传递一个路径来把该路径下的所有文件都通过这个脚本处理并输出  my_bash.sh 是文件处理脚本名 123456789101112131415161718192021222324252627282930313233343">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-shell_read_and_create_dir" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/02/18/shell_read_and_create_dir/" class="article-date">
+  <time datetime="2017-02-18T10:30:30.000Z" itemprop="datePublished">2017-02-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Shell/">Shell</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      shell_read_and_create_dir
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Shell遍历和创建目录"><a href="#Shell遍历和创建目录" class="headerlink" title="Shell遍历和创建目录"></a>Shell遍历和创建目录</h2><blockquote>
+<p>需求：现在有一个文件处理脚本，可以将一个文件按一定规则处理并输出。</p>
+<p>接收两个参数：<br>   $1，文件输出路径<br>   $2，原文件路径<br>现在需要写一个脚本，通过传递一个路径来把该路径下的所有文件都通过这个脚本处理并输出</p>
+</blockquote>
+<p>my_bash.sh 是文件处理脚本名</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!bin/sh</span><br><span class="line"></span><br><span class="line">function searchFile() &#123;</span><br><span class="line">    # 参数是目录路径</span><br><span class="line">    out_root=$2</span><br><span class="line">    for file in $1</span><br><span class="line">    do</span><br><span class="line">        # 是文件则开始压缩</span><br><span class="line">        echo $file</span><br><span class="line">        if test -f $file</span><br><span class="line">        then</span><br><span class="line">            path=$&#123;file:$3&#125;</span><br><span class="line">            # %/* 从右边开始取第一个/然后把他右边的字符都删掉，因为创建目录不能用文件名去创建</span><br><span class="line">            dir=$out_root$&#123;path%/*&#125;</span><br><span class="line">            mkdir -p $dir</span><br><span class="line">            my_bash.sh "$2$path" "$file"</span><br><span class="line">        fi</span><br><span class="line">        if test -d $file</span><br><span class="line">        then</span><br><span class="line">            # $file不带/，所以加上/ </span><br><span class="line">            searchFile "$file/*" $2 $3</span><br><span class="line">        fi</span><br><span class="line">    done</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">input_dir=$1</span><br><span class="line">output_dir=$2</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>如果路径最后一个字符是/，删除之</span><br><span class="line">if [ $&#123;input_dir:0-1&#125; == '/' ]</span><br><span class="line">then</span><br><span class="line">    input_dir=$&#123;input_dir%/*&#125;</span><br><span class="line">fi</span><br><span class="line">if [ $&#123;output_dir:0-1&#125; == '/' ]</span><br><span class="line">then</span><br><span class="line">    output_dir=$&#123;output_dir%/*&#125;</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 输入路径 输出路径 输入路径的长度</span><br><span class="line">searchFile $input_dir $output_dir $&#123;#input_dir&#125;</span><br></pre></td></tr></table></figure>
+<p>两个参数，\$1 输入路径  \$输出路口</p>
+<p>主要遇到的问题：</p>
+<ul>
+<li>用户输入的参数结尾有可能带/，也有可能不带/，所以在调用处理函数之前先统一格式</li>
+<li>遍历文件夹，文件夹名后+*<em>（如/data1/\</em>）<em>表示该文件夹下所有子文件夹和文件组成的字符串 </em>（空格隔开）*</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/02/18/shell_read_and_create_dir/" data-id="cji33eyis00069iopv8d29l24" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Shell/">Shell</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/03/08/jvm-option/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          jvm_option_collection
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JVM/">JVM</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shell/">Shell</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/netty/">netty</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/">Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/class/">class</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/netty/">netty</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Shell/" style="font-size: 10px;">Shell</a> <a href="/tags/class/" style="font-size: 10px;">class</a> <a href="/tags/netty/" style="font-size: 10px;">netty</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/06/06/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/13/netty_bytebuf/">Netty中的ByteBuf</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/12/bitwise_operation_in_java/">bitwise_operation_in_java</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/09/java_class_init_/">java_class_init</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/08/jvm-option/">jvm_option_collection</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

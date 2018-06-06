@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>java_class_init | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Java类加载和个块代码运行时机 Java类从加载到卸载的生命周期  加载(Loading)  |                    1、获取对应类的二进制字节流  |                    2、将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构。  ↓                    3、在堆中生成一个代表此类的java.lang.Class对象，作为方法区这">
+<meta name="keywords" content="Java,JVM,class">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java_class_init">
+<meta property="og:url" content="http://yoursite.com/2017/03/09/java_class_init_/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Java类加载和个块代码运行时机 Java类从加载到卸载的生命周期  加载(Loading)  |                    1、获取对应类的二进制字节流  |                    2、将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构。  ↓                    3、在堆中生成一个代表此类的java.lang.Class对象，作为方法区这">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-06-06T12:32:02.704Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java_class_init">
+<meta name="twitter:description" content="Java类加载和个块代码运行时机 Java类从加载到卸载的生命周期  加载(Loading)  |                    1、获取对应类的二进制字节流  |                    2、将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构。  ↓                    3、在堆中生成一个代表此类的java.lang.Class对象，作为方法区这">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-java_class_init_" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/09/java_class_init_/" class="article-date">
+  <time datetime="2017-03-09T12:52:00.000Z" itemprop="datePublished">2017-03-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JVM/">JVM</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      java_class_init
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Java类加载和个块代码运行时机"><a href="#Java类加载和个块代码运行时机" class="headerlink" title="Java类加载和个块代码运行时机"></a>Java类加载和个块代码运行时机</h1><blockquote>
+<p>Java类从加载到卸载的生命周期</p>
+</blockquote>
+<p>加载(Loading)<br>  |                    1、获取对应类的二进制字节流<br>  |                    2、将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构。<br>  ↓                    3、在堆中生成一个代表此类的java.lang.Class对象，作为方法区这些数据的访问入口。<br>验证(Verification)<br>  |                    1、文件格式验证(0xCAFEBABE，主、次版本号)<br>  |                    2、元数据验证<br>  |                    3、字节码验证<br>  ↓                    4、符号引用验证<br>准备(Preparation)<br>  |                    为类的静态变量分配内存并将其初始化为默认值(如static a=1,给a分配值0)，这些内存都将<br>  |                    在方法区中进行分配。<br>  ↓<br>解析(Resolution)<br>  |                    解析阶段是虚拟机将常量池内的符号引用替换为直接引用的过程。<br>  ↓<br>初始化(Initialization)<br>  |                    执行类构造器<clinit>()方法。<clinit>()方法是由编译器自动收集类中的所有类变量的赋值<br>  |                    动作和静态语句块(static{}块)中的语句合并产生的。<br>  ↓<br>使用(Using)<br>  ↓<br>卸载(Unloading)</clinit></clinit></p>
+<blockquote>
+<p>几个例子来深入了解</p>
+</blockquote>
+<p>被重新初始化的变量</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestTest</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">		StaticVariableInit singleTon = StaticVariableInit.getInstance();</span><br><span class="line">		System.out.println(<span class="string">"count1="</span> + singleTon.count1);</span><br><span class="line">		System.out.println(<span class="string">"count2="</span> + singleTon.count2);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StaticVariableInit</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> StaticVariableInit instance = <span class="keyword">new</span> StaticVariableInit();</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> count1;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> count2 = <span class="number">0</span>;</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">StaticVariableInit</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		count1++;</span><br><span class="line">		count2++;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> StaticVariableInit <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> instance;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>1、准备阶段，变量count1和count2都被赋值为0</p>
+<p>2、初始化阶段开始，因为类构造器是按顺序执行赋值和静态语句块(static{})的，所以先执行new StaticVariableInit()，执行结束后count1和count2都为1</p>
+<p>3、instance初始化完成后继续执行类构造器，count1没有赋值操作还是1，count2赋值为0</p>
+<p>执行结果</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">count1=<span class="number">1</span></span><br><span class="line">count2=<span class="number">0</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p>子类构造函数调用时会先调用父类的构造函数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> k = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">static</span> &#123;</span><br><span class="line">		System.out.println(<span class="string">"父类静态方法"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	&#123;</span><br><span class="line">		System.out.println(<span class="string">"父类非静态方法"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">A</span><span class="params">()</span> </span>&#123; <span class="comment">// 构造</span></span><br><span class="line">		System.out.println(<span class="string">"父类构造"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">A</span><span class="params">(String obj)</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"父类构造 obj"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> <span class="keyword">extends</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">	<span class="keyword">static</span> &#123;</span><br><span class="line">		System.out.println(<span class="string">"子类静态方法"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	&#123;</span><br><span class="line">		System.out.println(<span class="string">"子类非静态方法"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">B</span><span class="params">()</span> </span>&#123; <span class="comment">// 构造</span></span><br><span class="line">		System.out.println(<span class="string">"子类构造"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">B</span><span class="params">(String obj)</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"子类构造 obj"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>&#123;</span><br><span class="line">		B b = <span class="keyword">new</span> B(<span class="keyword">new</span> String());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>子类构造函数如果没有显示调用父类构造函数，那么会先调用父类的空构造。如果父类没有空构造那么必须显示指定要调用的父类构造函数，不然编译不会通过。</p>
+<p>执行结果</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">父类静态方法</span><br><span class="line">子类静态方法</span><br><span class="line">父类非静态方法</span><br><span class="line">父类构造</span><br><span class="line">子类非静态方法</span><br><span class="line">子类构造 obj</span><br></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Text</span> </span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> k = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> Text t1 = <span class="keyword">new</span> Text(<span class="string">"t1"</span>);</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> Text t2 = <span class="keyword">new</span> Text(<span class="string">"t2"</span>);</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> i = print(<span class="string">"i"</span>);</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> n = <span class="number">99</span>;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">int</span> j = print(<span class="string">"j"</span>);</span><br><span class="line">	&#123;</span><br><span class="line">		print(<span class="string">"构造块"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">static</span> &#123;</span><br><span class="line">		print(<span class="string">"静态块"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Text</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">		System.out.println((++k) + <span class="string">":"</span> + str + <span class="string">"   i="</span> + i + <span class="string">"    n="</span> + n);</span><br><span class="line">		++i;</span><br><span class="line">		++n;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">print</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">		System.out.println((++k) + <span class="string">":"</span> + str + <span class="string">"   i="</span> + i + <span class="string">"    n="</span> + n);</span><br><span class="line">		++n;</span><br><span class="line">		<span class="keyword">return</span> ++i;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>&#123;</span><br><span class="line">		Text t = <span class="keyword">new</span> Text(<span class="string">"init"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>:j   i=<span class="number">0</span>    n=<span class="number">0</span></span><br><span class="line"><span class="number">2</span>:构造块   i=<span class="number">1</span>    n=<span class="number">1</span></span><br><span class="line"><span class="number">3</span>:t1   i=<span class="number">2</span>    n=<span class="number">2</span></span><br><span class="line"><span class="number">4</span>:j   i=<span class="number">3</span>    n=<span class="number">3</span></span><br><span class="line"><span class="number">5</span>:构造块   i=<span class="number">4</span>    n=<span class="number">4</span></span><br><span class="line"><span class="number">6</span>:t2   i=<span class="number">5</span>    n=<span class="number">5</span></span><br><span class="line"><span class="number">7</span>:i   i=<span class="number">6</span>    n=<span class="number">6</span></span><br><span class="line"><span class="number">8</span>:静态块   i=<span class="number">7</span>    n=<span class="number">99</span></span><br><span class="line"><span class="number">9</span>:j   i=<span class="number">8</span>    n=<span class="number">100</span></span><br><span class="line"><span class="number">10</span>:构造块   i=<span class="number">9</span>    n=<span class="number">101</span></span><br><span class="line"><span class="number">11</span>:init   i=<span class="number">10</span>    n=<span class="number">102</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/03/09/java_class_init_/" data-id="cji33eyij00019iopa3nxmlno" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JVM/">JVM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class/">class</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/02/12/bitwise_operation_in_java/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          bitwise_operation_in_java
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/03/08/jvm-option/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">jvm_option_collection</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JVM/">JVM</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shell/">Shell</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/netty/">netty</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/">Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/class/">class</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/netty/">netty</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Shell/" style="font-size: 10px;">Shell</a> <a href="/tags/class/" style="font-size: 10px;">class</a> <a href="/tags/netty/" style="font-size: 10px;">netty</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/06/06/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/13/netty_bytebuf/">Netty中的ByteBuf</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/12/bitwise_operation_in_java/">bitwise_operation_in_java</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/09/java_class_init_/">java_class_init</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/08/jvm-option/">jvm_option_collection</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
