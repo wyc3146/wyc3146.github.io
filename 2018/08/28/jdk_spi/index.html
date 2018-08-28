@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Java," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -81,18 +81,17 @@
 
 
 
-<meta name="description" content="Java中的位运算jdk源码中很多操作都涉及到位运算（如HashMap中取2^30用1 &amp;lt;&amp;lt; 30，ByteBuffer中将两个byte组成short用(short)((b1 &amp;lt;&amp;lt; 8) | (b0 &amp;amp; 0xff))），因为计算机底层数据都是以二进制形式存储的，所有的运算最终其实都是转换成二进制进行位运算，所以直接位运算具有与生俱来的高效性。  位运算符号  &amp;am">
-<meta name="keywords" content="Java">
+<meta name="description" content="JDK SPI实现原理SPI全称Service Provider Interface，是JDK官方提供的一种服务发现(look up)机制。 一般分为接口提供方和接口实现方，权威方提供接口标准（如JDBC标准，是由JDK提供的用于数据库连接的标准接口），接口实现方提供具体实现（如针对JDBC的mysql实现是由mysql官方提供的）。 下面我们通过mysql的实现来了解一下SPI具体是怎么工作的。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="bitwise_operation_in_java">
-<meta property="og:url" content="http://yoursite.com/2018/02/12/bitwise_operation_in_java/index.html">
+<meta property="og:title" content="Hogwarts">
+<meta property="og:url" content="http://yoursite.com/2018/08/28/jdk_spi/index.html">
 <meta property="og:site_name" content="Hogwarts">
-<meta property="og:description" content="Java中的位运算jdk源码中很多操作都涉及到位运算（如HashMap中取2^30用1 &amp;lt;&amp;lt; 30，ByteBuffer中将两个byte组成short用(short)((b1 &amp;lt;&amp;lt; 8) | (b0 &amp;amp; 0xff))），因为计算机底层数据都是以二进制形式存储的，所有的运算最终其实都是转换成二进制进行位运算，所以直接位运算具有与生俱来的高效性。  位运算符号  &amp;am">
+<meta property="og:description" content="JDK SPI实现原理SPI全称Service Provider Interface，是JDK官方提供的一种服务发现(look up)机制。 一般分为接口提供方和接口实现方，权威方提供接口标准（如JDBC标准，是由JDK提供的用于数据库连接的标准接口），接口实现方提供具体实现（如针对JDBC的mysql实现是由mysql官方提供的）。 下面我们通过mysql的实现来了解一下SPI具体是怎么工作的。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-08-28T03:26:22.716Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="bitwise_operation_in_java">
-<meta name="twitter:description" content="Java中的位运算jdk源码中很多操作都涉及到位运算（如HashMap中取2^30用1 &amp;lt;&amp;lt; 30，ByteBuffer中将两个byte组成short用(short)((b1 &amp;lt;&amp;lt; 8) | (b0 &amp;amp; 0xff))），因为计算机底层数据都是以二进制形式存储的，所有的运算最终其实都是转换成二进制进行位运算，所以直接位运算具有与生俱来的高效性。  位运算符号  &amp;am">
+<meta name="twitter:title" content="Hogwarts">
+<meta name="twitter:description" content="JDK SPI实现原理SPI全称Service Provider Interface，是JDK官方提供的一种服务发现(look up)机制。 一般分为接口提供方和接口实现方，权威方提供接口标准（如JDBC标准，是由JDK提供的用于数据库连接的标准接口），接口实现方提供具体实现（如针对JDBC的mysql实现是由mysql官方提供的）。 下面我们通过mysql的实现来了解一下SPI具体是怎么工作的。">
 
 
 
@@ -122,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/02/12/bitwise_operation_in_java/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/08/28/jdk_spi/"/>
 
 
 
 
 
-  <title>bitwise_operation_in_java | Hogwarts</title>
+  <title> | Hogwarts</title>
   
 
 
@@ -264,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/12/bitwise_operation_in_java/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/28/jdk_spi/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Sirius Black">
@@ -281,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">bitwise_operation_in_java</h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -293,8 +292,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-12T10:20:30+08:00">
-                2018-02-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-28T11:26:22+08:00">
+                2018-08-28
               </time>
             
 
@@ -304,28 +303,6 @@
           </span>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -334,9 +311,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/02/12/bitwise_operation_in_java/#comments" itemprop="discussionUrl">
+                <a href="/2018/08/28/jdk_spi/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/02/12/bitwise_operation_in_java/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/08/28/jdk_spi/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -364,53 +341,23 @@
       
 
       
-        <h1 id="Java中的位运算"><a href="#Java中的位运算" class="headerlink" title="Java中的位运算"></a>Java中的位运算</h1><p>jdk源码中很多操作都涉及到位运算（如HashMap中取2^30用1 &lt;&lt; 30，ByteBuffer中将两个byte组成short用(short)((b1 &lt;&lt; 8) | (b0 &amp; 0xff))），因为计算机底层数据都是以二进制形式存储的，所有的运算最终其实都是转换成二进制进行位运算，所以直接位运算具有与生俱来的高效性。</p>
-<blockquote>
-<p>位运算符号</p>
-</blockquote>
-<p>&amp;    按位与运算        A &amp; B，每位进行比较，相同位都是1则此位结果为1，否则结果为0</p>
-<p>|    按位或运算        A |  B，每位进行比较，相同位都是0则此位结果为0，否则结果为1</p>
-<p>~     按位非运算        ~A，单元运算，每位取反</p>
-<p>^     异或运算            A ^  B，每位进行比较，相同位值相同则此位结果为0，否则结果为1。也称不进位加法</p>
-<p>&lt;&lt;    左移运算            A &lt;&lt; n，把所有位向左移动n位，右边空出来的n位用0填充</p>
-<p>>>    右移运算            A &gt;&gt; n，把所有位向右移动n位，左边空出来的n位用原数的符号位填充</p>
-<p>>>>    无符号右移运算    A &gt;&gt;&gt; n，把所有位向右移动n位，左边空出来的n位用0填充</p>
-<p>主要讲讲右移运算与无符号右移运算，右移运算是将所有位位移后左边用符号位补齐，所以运算完后符号位不变。而无符号右移运算运算完后都会用0补齐，所以运算完后肯定是正数。</p>
-<p>举个例子，对于十进制的数DEC(-101) = BIN(11111111 11111111 11111111 10011011)</p>
-<p>对其进行右移运算的结果是：</p>
-<p>BIN(11111111 11111111 11111111 10011011) &gt;&gt; 2 = BIN(11111111 11111111 11111111 11100110)</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = -<span class="number">101</span> &gt;&gt; <span class="number">2</span>;	<span class="comment">// 计算结果为-26</span></span><br></pre></td></tr></table></figure>
-<p>对其进行无符号右移运算的结果是：</p>
-<p>BIN(11111111 11111111 11111111 10011011) &gt;&gt; 2 = BIN(00111111 11111111 11111111 11100110)</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = -<span class="number">101</span> &gt;&gt;&gt; <span class="number">2</span>;	<span class="comment">// 计算结果为1073741798</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>基本数据类型间的转换</p>
-</blockquote>
-<p>在这里我们只关心四种正数类型的转换，byte、short、int、long</p>
-<p>byte、short、int、long所能表示的范围是逐步扩大，前面能表示的范围是后面的一个子集。</p>
-<p>所以将范围小的数据类型转换成范围大的数据类型，在Java中可以隐式转换且能保证值不变。如以下表达式：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">byte</span> b = -<span class="number">11</span>;</span><br><span class="line"><span class="keyword">int</span> i = b;</span><br></pre></td></tr></table></figure>
-<p>因为要保证值不变，所以从byte转成long的时候多出的24位用原始byte值的符号位填充：</p>
-<p>BIN(11110101) -&gt; BIN(11111111 11111111 11111111 11110101)</p>
-<p>将大范围的数据类型转成小范围的数据类型就有问题了，位数不够用！Java语言中对这种类型的转换也需要显示进行（强制类型转换），对于这种转换，做法很暴力，直接把多出来的高位抹去。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">10086</span>;</span><br><span class="line"><span class="keyword">byte</span> b = (<span class="keyword">byte</span>) i;</span><br></pre></td></tr></table></figure>
-<p>DEC(10086) = BIN(‭00000000 00000000 00100111 01100110‬) -&gt; BIN(01100110)</p>
-<p>这种转换是很危险的，如果把一个范围不在-128~127的int类型的值强制转换为byte，将会得到一个和原值相差很大的数。（10086 -&gt; 102）</p>
-<blockquote>
-<p>在JDK中的使用</p>
-</blockquote>
-<p>来看看之前提到的ByteBuffer中根据两个byte组成一个有符号的short值</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">short</span>)((b1 &lt;&lt; <span class="number">8</span>) | (b0 &amp; <span class="number">0xff</span>));</span><br></pre></td></tr></table></figure>
-<p>首先需要了解，Java在对short和int类型的数进行位运算时会把他们转换成int类型的数在进行运算。</p>
-<p>将两个byte转换成有符号的short值，理论上只需要把高位和低位拼在一起就好了，假设高位是0xXX，低位是0xYY，那么我们最终想要的值就是0xXXYY。最粗暴的方式：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">short</span>)( (<span class="number">0</span>xXX &amp; <span class="number">0xff</span>) &lt;&lt; <span class="number">8</span> + (<span class="number">0</span>xYY &amp; <span class="number">0xff</span>) )</span><br></pre></td></tr></table></figure>
-<p>把得到的值直接强制转换成short(抹去左边16位的0)后就是我们想要的值。</p>
-<p>注意到(0xXX &amp; 0xff) &lt;&lt; 8这个表达式和0xXX &lt;&lt; 8这个表达式唯一区别就是得到的数前面16位是0还是f，如果0xXX第一位是0那么两个表达式计算结果一样；如果0xXX第一位是1，那么</p>
-<p>​    (0xXX &amp; 0xff) &lt;&lt; 8 –&gt; 0x0000XX00                0xXX &lt;&lt; 8 –&gt; 0xffffXX00</p>
-<p>并不影响后16位的结果，而我们真正关心的只是后16位的值，前16位会在强转时被抹去，所以可以简化成：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">short</span>)( <span class="number">0</span>xXX &lt;&lt; <span class="number">8</span> + (<span class="number">0</span>xYY &amp; <span class="number">0xff</span>) )</span><br></pre></td></tr></table></figure>
-<p>第一步0xXX &lt;&lt; 8得到的后25~32位永远是0，第二步0xYY &amp; 0xff得到的17~24永远是0，所以这两个数的加法可以直接用|运算代替，可以转化最终成表达式：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">short</span>)( <span class="number">0</span>xXX &lt;&lt; <span class="number">8</span> | (<span class="number">0</span>xYY) &amp; <span class="number">0xff</span> )</span><br></pre></td></tr></table></figure>
+        <h1 id="JDK-SPI实现原理"><a href="#JDK-SPI实现原理" class="headerlink" title="JDK SPI实现原理"></a>JDK SPI实现原理</h1><p>SPI全称Service Provider Interface，是JDK官方提供的一种服务发现(look up)机制。</p>
+<p>一般分为接口提供方和接口实现方，权威方提供接口标准（如JDBC标准，是由JDK提供的用于数据库连接的标准接口），接口实现方提供具体实现（如针对JDBC的mysql实现是由mysql官方提供的）。</p>
+<p>下面我们通过mysql的实现来了解一下SPI具体是怎么工作的。</p>
+<p>mysql-connector-java的jar包中，有META-INF/services/java.sql.Driver文件，内容如下</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">com.mysql.jdbc.Driver</span><br><span class="line">com.mysql.fabric.jdbc.FabricMySQLDriver</span><br></pre></td></tr></table></figure>
+<p>SPI约定提供方需要在META-INF/services/目录下创建以接口名(包括接口路径的全限定名)命名的文件，文件内容是这个接口的具体实现。</p>
+<p>由此说明mysql-connector-java提供了java.sql.Driver的实现，并且提供了两个实现。</p>
+<p>那JDK具体是通过什么方式来读取这个文件并加载具体实现类的呢？不着急找答案，我们先看看mysql包是怎么使用的。用mysql客户端获取一个连接的标准代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Connection connection = DriverManager.getConnection(<span class="string">"jdbc:mysql://127.0.0.1:3306/wukong"</span>, username, password);</span><br></pre></td></tr></table></figure>
+<p>DriverManager是JDK提供的一个支持类，因为不同版本实现有略微区别，逻辑还是相似的，我们以jdk10.0.1的代码为例分析。</p>
+<p>getConnection()方法内部调用了<em>ensureDriversInitialized()</em>方法，这个方法职责就是用ServiceLoader加载所有的java.sql.Driver接口实现，最核心的代码就是下面几句</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">AccessController.doPrivileged(<span class="keyword">new</span> PrivilegedAction&lt;Void&gt;() &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Void <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ServiceLoader&lt;Driver&gt; loadedDrivers = ServiceLoader.load(Driver.class);</span><br><span class="line">        Iterator&lt;Driver&gt; driversIterator = loadedDrivers.iterator();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">while</span> (driversIterator.hasNext()) &#123;</span><br><span class="line">                driversIterator.next();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Throwable t) &#123;</span><br><span class="line">            <span class="comment">// Do nothing</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>通过ServiceLoader来指定具体的SPI接口并得到一个Iterator对象，在迭代这个迭代器的时候会去找指定路径的文件(这里就是META-INF/services/java.sql.Driver)，并给指定的实现创建对象。DriverManager约定将所有的驱动存在<em>registeredDrivers</em>对象里，mysql的做法是在com.mysql.jdbc.Driver里面加一个静态块初始化一个自身对象并把对象注册到DriverManager.registeredDrivers中。所以mysql这种实现方式com.mysql.jdbc.Driver类其实被实例化了两次，第一次在类初始化的时候执行的静态块中，这个对象是最终使用的对象；第二次实例化是ServiceLoader迭代器调用next()时会通过反射实例化一次对象，这个对象直接被DriverManager扔掉了。静态块向DriverManager注册的代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> &#123;</span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		java.sql.DriverManager.registerDriver(<span class="keyword">new</span> Driver());</span><br><span class="line">	&#125; <span class="keyword">catch</span> (SQLException E) &#123;</span><br><span class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"Can't register driver!"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们平时用mysql一般都只用com.mysql.jdbc.Driver类的实例化对象来操作，而META-INF/services/java.sql.Driver文件中声明了两个类实现，根据ServiceLoader类的加载规则，就算我们不使用com.mysql.fabric.jdbc.FabricMysqlDriver类实现，ServiceLoader也会帮我们实例化这个对象。而且在DriverManager根据指定url获取数据库连接时，DriverManager时遍历所有已注册的驱动依次尝试获取连接，直到拿到可用连接才会返回，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(DriverInfo aDriver : registeredDrivers) &#123;</span><br><span class="line">    <span class="comment">// If the caller does not have permission to load the driver then</span></span><br><span class="line">    <span class="comment">// skip it.</span></span><br><span class="line">    <span class="keyword">if</span>(isDriverAllowed(aDriver.driver, callerCL)) &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            println(<span class="string">"    trying "</span> + aDriver.driver.getClass().getName());</span><br><span class="line">            Connection con = aDriver.driver.connect(url, info);</span><br><span class="line">            <span class="keyword">if</span> (con != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="comment">// Success!</span></span><br><span class="line">                println(<span class="string">"getConnection returning "</span> + aDriver.driver.getClass().getName());</span><br><span class="line">                <span class="keyword">return</span> (con);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SQLException ex) &#123;</span><br><span class="line">            <span class="keyword">if</span> (reason == <span class="keyword">null</span>) &#123;</span><br><span class="line">                reason = ex;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        println(<span class="string">"    skipping: "</span> + aDriver.getClass().getName());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这其实是一种资源浪费，内存中无缘无故多了一个com.mysql.fabric.jdbc.FabricMYSQLDriver类对象，而且不能被回收，获取Connection时也要根据具体的url依次判断每个Driver是否能根据此url来获取连接，效率并不是很高。</p>
 
       
     </div>
@@ -426,12 +373,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Java/" rel="tag"># Java</a>
-          
-        </div>
-      
 
       
       
@@ -441,8 +382,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/09/java_class_init_/" rel="next" title="java_class_init">
-                <i class="fa fa-chevron-left"></i> java_class_init
+              <a href="/2018/08/27/deploy_shadowsocks_with_docker/" rel="next" title="deploy_shadowsocks_with_docker">
+                <i class="fa fa-chevron-left"></i> deploy_shadowsocks_with_docker
               </a>
             
           </div>
@@ -450,10 +391,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/02/13/netty_bytebuf/" rel="prev" title="Netty中的ByteBuf">
-                Netty中的ByteBuf <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -602,7 +539,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java中的位运算"><span class="nav-number">1.</span> <span class="nav-text">Java中的位运算</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JDK-SPI实现原理"><span class="nav-number">1.</span> <span class="nav-text">JDK SPI实现原理</span></a></li></ol></div>
             
 
           </div>
@@ -779,9 +716,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2018/02/12/bitwise_operation_in_java/';
-          this.page.identifier = '2018/02/12/bitwise_operation_in_java/';
-          this.page.title = 'bitwise_operation_in_java';
+          this.page.url = 'http://yoursite.com/2018/08/28/jdk_spi/';
+          this.page.identifier = '2018/08/28/jdk_spi/';
+          this.page.title = '';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://.disqus.com/embed.js';
