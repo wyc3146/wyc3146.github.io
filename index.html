@@ -263,150 +263,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/28/jdk_spi/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Sirius Black">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hogwarts">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/28/jdk_spi/" itemprop="url">未命名</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-28T11:26:22+08:00">
-                2018-08-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/08/28/jdk_spi/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/08/28/jdk_spi/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          JDK SPI实现原理SPI全称Service Provider Interface，是JDK官方提供的一种服务发现(look up)机制。
-一般分为接口提供方和接口实现方，权威方提供接口标准（如JDBC标准，是由JDK提供的用于数据库连接的标准接口），接口实现方提供具体实现（如针对JDBC的mysql实现是由mysql官方提供的）。
-下面我们通过mysql的实现来了解一下SPI具体是怎么工作的。
-mysql-connector-java的jar包中，有META-INF/services/java.sql.Driver文件，内容如下
-12com.mysql.jdbc.Drivercom.mysql.fabric.jdbc.FabricMySQLDriver
-SPI约定提供方需要在META-INF/services/目录下创建以接口名(包括接口路径的全限定名)命名的文件，文件内容是这个接口的具体实现。
-由此说明mysql-connector-java提供了java.sql.Driver的实现，并且提供了两个实现。
-那JDK具体是通过什么方式来读取这个文件并加载具体实现类的呢？不着急找答案
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/28/jdk_spi/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/27/deploy_shadowsocks_with_docker/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -527,6 +383,172 @@ docker pull mritd/shadowsocks
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/08/27/deploy_shadowsocks_with_docker/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/27/jdk_spi/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sirius Black">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hogwarts">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/27/jdk_spi/" itemprop="url">jdk_spi</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-27T19:05:00+08:00">
+                2018-05-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JDK/" itemprop="url" rel="index">
+                    <span itemprop="name">JDK</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/27/jdk_spi/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/05/27/jdk_spi/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          JDK SPI实现原理SPI全称Service Provider Interface，是JDK官方提供的一种服务发现(look up)机制。
+一般分为接口提供方和接口实现方，权威方提供接口标准（如JDBC标准，是由JDK提供的用于数据库连接的标准接口），接口实现方提供具体实现（如针对JDBC的mysql实现是由mysql官方提供的）。
+下面我们通过mysql的实现来了解一下SPI具体是怎么工作的。
+mysql-connector-java的jar包中，有META-INF/services/java.sql.Driver文件，内容如下
+12com.mysql.jdbc.Drivercom.mysql.fabric.jdbc.FabricMySQLDriver
+SPI约定提供方需要在META-INF/services/目录下创建以接口名(包括接口路径的全限定名)命名的文件，文件内容是这个接口的具体实现。
+由此说明mysql-connector-java提供了java.sql.Driver的实现，并且提供了两个实现。
+那JDK具体是通过什么方式来读取这个文件并加载具体实现类的呢？不着急找答案
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/05/27/jdk_spi/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1452,7 +1474,7 @@ my_bash.sh 是文件处理脚本名
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>
@@ -1463,7 +1485,7 @@ my_bash.sh 是文件处理脚本名
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
