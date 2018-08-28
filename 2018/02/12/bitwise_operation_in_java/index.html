@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="Java中的位运算jdk源码中很多操作都涉及到位运算（如HashMap中取2^30用1 &amp;lt;&amp;lt; 30，ByteBuffer中将两个byte组成short用(short)((b1 &amp;lt;&amp;lt; 8) | (b0 &amp;amp; 0xff))），因为计算机底层数据都是以二进制形式存储的，所有的运算最终其实都是转换成二进制进行位运算，所以直接位运算具有与生俱来的高效性。  位运算符号  &amp;am">
+<meta name="description" content="jdk源码中很多操作都涉及到位运算（如HashMap中取2^30用1 &amp;lt;&amp;lt; 30，ByteBuffer中将两个byte组成short用(short)((b1 &amp;lt;&amp;lt; 8) | (b0 &amp;amp; 0xff))），因为计算机底层数据都是以二进制形式存储的，所有的运算最终其实都是转换成二进制进行位运算，所以直接位运算具有与生俱来的高效性。  位运算符号  &amp;amp;    按位与">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="bitwise_operation_in_java">
+<meta property="og:title" content="Java中的位运算">
 <meta property="og:url" content="http://yoursite.com/2018/02/12/bitwise_operation_in_java/index.html">
 <meta property="og:site_name" content="Hogwarts">
-<meta property="og:description" content="Java中的位运算jdk源码中很多操作都涉及到位运算（如HashMap中取2^30用1 &amp;lt;&amp;lt; 30，ByteBuffer中将两个byte组成short用(short)((b1 &amp;lt;&amp;lt; 8) | (b0 &amp;amp; 0xff))），因为计算机底层数据都是以二进制形式存储的，所有的运算最终其实都是转换成二进制进行位运算，所以直接位运算具有与生俱来的高效性。  位运算符号  &amp;am">
+<meta property="og:description" content="jdk源码中很多操作都涉及到位运算（如HashMap中取2^30用1 &amp;lt;&amp;lt; 30，ByteBuffer中将两个byte组成short用(short)((b1 &amp;lt;&amp;lt; 8) | (b0 &amp;amp; 0xff))），因为计算机底层数据都是以二进制形式存储的，所有的运算最终其实都是转换成二进制进行位运算，所以直接位运算具有与生俱来的高效性。  位运算符号  &amp;amp;    按位与">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-28T03:26:22.716Z">
+<meta property="og:updated_time" content="2018-08-28T07:13:54.292Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="bitwise_operation_in_java">
-<meta name="twitter:description" content="Java中的位运算jdk源码中很多操作都涉及到位运算（如HashMap中取2^30用1 &amp;lt;&amp;lt; 30，ByteBuffer中将两个byte组成short用(short)((b1 &amp;lt;&amp;lt; 8) | (b0 &amp;amp; 0xff))），因为计算机底层数据都是以二进制形式存储的，所有的运算最终其实都是转换成二进制进行位运算，所以直接位运算具有与生俱来的高效性。  位运算符号  &amp;am">
+<meta name="twitter:title" content="Java中的位运算">
+<meta name="twitter:description" content="jdk源码中很多操作都涉及到位运算（如HashMap中取2^30用1 &amp;lt;&amp;lt; 30，ByteBuffer中将两个byte组成short用(short)((b1 &amp;lt;&amp;lt; 8) | (b0 &amp;amp; 0xff))），因为计算机底层数据都是以二进制形式存储的，所有的运算最终其实都是转换成二进制进行位运算，所以直接位运算具有与生俱来的高效性。  位运算符号  &amp;amp;    按位与">
 
 
 
@@ -128,7 +128,7 @@
 
 
 
-  <title>bitwise_operation_in_java | Hogwarts</title>
+  <title>Java中的位运算 | Hogwarts</title>
   
 
 
@@ -281,7 +281,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">bitwise_operation_in_java</h1>
+          <h1 class="post-title" itemprop="name headline">Java中的位运算</h1>
         
 
         <div class="post-meta">
@@ -364,7 +364,7 @@
       
 
       
-        <h1 id="Java中的位运算"><a href="#Java中的位运算" class="headerlink" title="Java中的位运算"></a>Java中的位运算</h1><p>jdk源码中很多操作都涉及到位运算（如HashMap中取2^30用1 &lt;&lt; 30，ByteBuffer中将两个byte组成short用(short)((b1 &lt;&lt; 8) | (b0 &amp; 0xff))），因为计算机底层数据都是以二进制形式存储的，所有的运算最终其实都是转换成二进制进行位运算，所以直接位运算具有与生俱来的高效性。</p>
+        <p>jdk源码中很多操作都涉及到位运算（如HashMap中取2^30用1 &lt;&lt; 30，ByteBuffer中将两个byte组成short用(short)((b1 &lt;&lt; 8) | (b0 &amp; 0xff))），因为计算机底层数据都是以二进制形式存储的，所有的运算最终其实都是转换成二进制进行位运算，所以直接位运算具有与生俱来的高效性。</p>
 <blockquote>
 <p>位运算符号</p>
 </blockquote>
@@ -441,8 +441,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/09/java_class_init_/" rel="next" title="java_class_init">
-                <i class="fa fa-chevron-left"></i> java_class_init
+              <a href="/2017/03/09/java_class_init_/" rel="next" title="Java类加载和个块代码运行时机">
+                <i class="fa fa-chevron-left"></i> Java类加载和个块代码运行时机
               </a>
             
           </div>
@@ -515,17 +515,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -592,22 +583,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java中的位运算"><span class="nav-number">1.</span> <span class="nav-text">Java中的位运算</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -781,7 +756,7 @@
         var disqus_config = function () {
           this.page.url = 'http://yoursite.com/2018/02/12/bitwise_operation_in_java/';
           this.page.identifier = '2018/02/12/bitwise_operation_in_java/';
-          this.page.title = 'bitwise_operation_in_java';
+          this.page.title = 'Java中的位运算';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://.disqus.com/embed.js';

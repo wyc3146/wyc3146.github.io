@@ -282,7 +282,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/27/deploy_shadowsocks_with_docker/" itemprop="url">deploy_shadowsocks_with_docker</a></h1>
+                <a class="post-title-link" href="/2018/08/27/deploy_shadowsocks_with_docker/" itemprop="url">用Docker部署shadowsocks</a></h1>
         
 
         <div class="post-meta">
@@ -367,7 +367,7 @@
       
         
           
-          用Docker部署shadowsocks最近了解了下Docker容器的基础知识，就想着将自己服务器上的服务都容器化，方便管理，还能让机器保持整洁不需要安装稀奇古怪的依赖，直接pull一个对应服务的镜像就好了。
+          最近了解了下Docker容器的基础知识，就想着将自己服务器上的服务都容器化，方便管理，还能让机器保持整洁不需要安装稀奇古怪的依赖，直接pull一个对应服务的镜像就好了。
 就先从shadowsocks开始吧，这篇主要就讲如何在linux机器上通过Docker部署一个Shadowsocks服务。
 
 下载容器
@@ -378,7 +378,8 @@ docker pull mritd/shadowsocks
 启动容器
 
 启动一个最简单的ss服务测试一下
-1docker run -dt --name ss -p 6443:6443 mritd/shadowsocks -s "-s 0.0.0.0 -p 6443 -m aes-256-cfb -k te
+1docker run -dt --name ss -p 6443:6443 mritd/shadowsocks -s "-s 0.0.0.0 -p 6443 -m aes-256-cfb -k test123 --fast-open"
+依
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -452,7 +453,7 @@ docker pull mritd/shadowsocks
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/27/jdk_spi/" itemprop="url">jdk_spi</a></h1>
+                <a class="post-title-link" href="/2018/05/27/jdk_spi/" itemprop="url">JDK SPI实现原理</a></h1>
         
 
         <div class="post-meta">
@@ -537,14 +538,14 @@ docker pull mritd/shadowsocks
       
         
           
-          JDK SPI实现原理SPI全称Service Provider Interface，是JDK官方提供的一种服务发现(look up)机制。
+          SPI全称Service Provider Interface，是JDK官方提供的一种服务发现(look up)机制。
 一般分为接口提供方和接口实现方，权威方提供接口标准（如JDBC标准，是由JDK提供的用于数据库连接的标准接口），接口实现方提供具体实现（如针对JDBC的mysql实现是由mysql官方提供的）。
 下面我们通过mysql的实现来了解一下SPI具体是怎么工作的。
 mysql-connector-java的jar包中，有META-INF/services/java.sql.Driver文件，内容如下
 12com.mysql.jdbc.Drivercom.mysql.fabric.jdbc.FabricMySQLDriver
 SPI约定提供方需要在META-INF/services/目录下创建以接口名(包括接口路径的全限定名)命名的文件，文件内容是这个接口的具体实现。
 由此说明mysql-connector-java提供了java.sql.Driver的实现，并且提供了两个实现。
-那JDK具体是通过什么方式来读取这个文件并加载具体实现类的呢？不着急找答案
+那JDK具体是通过什么方式来读取这个文件并加载具体实现类的呢？不着急找答案，我们先看看mysql
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -780,7 +781,7 @@ Direct or Heap，内存用的是堆内存还是直接内存HeapByteBuf，目前�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/12/bitwise_operation_in_java/" itemprop="url">bitwise_operation_in_java</a></h1>
+                <a class="post-title-link" href="/2018/02/12/bitwise_operation_in_java/" itemprop="url">Java中的位运算</a></h1>
         
 
         <div class="post-meta">
@@ -865,7 +866,7 @@ Direct or Heap，内存用的是堆内存还是直接内存HeapByteBuf，目前�
       
         
           
-          Java中的位运算jdk源码中很多操作都涉及到位运算（如HashMap中取2^30用1 &lt;&lt; 30，ByteBuffer中将两个byte组成short用(short)((b1 &lt;&lt; 8) | (b0 &amp; 0xff))），因为计算机底层数据都是以二进制形式存储的，所有的运算最终其实都是转换成二进制进行位运算，所以直接位运算具有与生俱来的高效性。
+          jdk源码中很多操作都涉及到位运算（如HashMap中取2^30用1 &lt;&lt; 30，ByteBuffer中将两个byte组成short用(short)((b1 &lt;&lt; 8) | (b0 &amp; 0xff))），因为计算机底层数据都是以二进制形式存储的，所有的运算最终其实都是转换成二进制进行位运算，所以直接位运算具有与生俱来的高效性。
 
 位运算符号
 
@@ -874,7 +875,7 @@ Direct or Heap，内存用的是堆内存还是直接内存HeapByteBuf，目前�
 ~     按位非运算        ~A，单元运算，每位取反
 ^     异或运算            A ^  B，每位进行比较，相同位值相同则此位结果为0，否则结果为1。也称不进位加法
 &lt;&lt;    左移运算            A &lt;&lt; n，把所有位向左移动n位，右边空出来的n位用0填充
->>    右移运算            A &gt;
+>>    右移运算            A &gt;&gt; n，把所
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -948,7 +949,7 @@ Direct or Heap，内存用的是堆内存还是直接内存HeapByteBuf，目前�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/09/java_class_init_/" itemprop="url">java_class_init</a></h1>
+                <a class="post-title-link" href="/2017/03/09/java_class_init_/" itemprop="url">Java类加载和个块代码运行时机</a></h1>
         
 
         <div class="post-meta">
@@ -1033,10 +1034,10 @@ Direct or Heap，内存用的是堆内存还是直接内存HeapByteBuf，目前�
       
         
           
-          Java类加载和个块代码运行时机
+          
 Java类从加载到卸载的生命周期
 
-加载(Loading)  |                    1、获取对应类的二进制字节流  |                    2、将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构。  ↓                    3、在堆中生成一个代表此类的java.lang.Class对象，作为方法区这些数据的访问入口。验证(Verification)  |                    1、文件格式验证(0xCAFEBABE，主、次版本号)  |                    2、元数据验证  |                    3、字节码验证  ↓                    4、符号引用验证准备(Preparation)  |                    为类的静态变量分配内存并将其初始化为默认值(如static a=1,给a分配值0)，这些内存都将  |                    在方法区中进行分配。  ↓解析(Resolutio
+加载(Loading)  |                    1、获取对应类的二进制字节流  |                    2、将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构。  ↓                    3、在堆中生成一个代表此类的java.lang.Class对象，作为方法区这些数据的访问入口。验证(Verification)  |                    1、文件格式验证(0xCAFEBABE，主、次版本号)  |                    2、元数据验证  |                    3、字节码验证  ↓                    4、符号引用验证准备(Preparation)  |                    为类的静态变量分配内存并将其初始化为默认值(如static a=1,给a分配值0)，这些内存都将  |                    在方法区中进行分配。  ↓解析(Resolution)  |           
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1110,7 +1111,7 @@ Java类从加载到卸载的生命周期
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/08/jvm-option/" itemprop="url">jvm_option_collection</a></h1>
+                <a class="post-title-link" href="/2017/03/08/jvm-option/" itemprop="url">JVM常用参数集合</a></h1>
         
 
         <div class="post-meta">
@@ -1195,7 +1196,7 @@ Java类从加载到卸载的生命周期
       
         
           
-          JVM参数实用型，会影响运行时环境
+          实用型，会影响运行时环境
 堆大小 
 
 -Xms            初始堆大小，默认内存的1/64(1GB)
@@ -1211,7 +1212,7 @@ Java类从加载到卸载的生命周期
 配合GC
 
 -XX:+DisableEx                屏蔽System.gc()
--X
+-XX:Max
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1285,7 +1286,7 @@ Java类从加载到卸载的生命周期
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/02/18/shell_read_and_create_dir/" itemprop="url">shell_read_and_create_dir</a></h1>
+                <a class="post-title-link" href="/2017/02/18/shell_read_and_create_dir/" itemprop="url">Shell遍历和创建目录</a></h1>
         
 
         <div class="post-meta">
@@ -1370,12 +1371,11 @@ Java类从加载到卸载的生命周期
       
         
           
-          Shell遍历和创建目录
-需求：现在有一个文件处理脚本，可以将一个文件按一定规则处理并输出。
-接收两个参数：   $1，文件输出路径   $2，原文件路径现在需要写一个脚本，通过传递一个路径来把该路径下的所有文件都通过这个脚本处理并输出
+          
+需求：现在有一个文件处理脚本，可以将一个文件按一定规则处理并输出。接收两个参数：$1，文件输出路径$2，原文件路径现在需要写一个脚本，通过传递一个路径来把该路径下的所有文件都通过这个脚本处理并输出
 
 my_bash.sh 是文件处理脚本名
-12345678910111213141516171819202122232425262728293031323334353637383940#!bin/shfunction searchFile() &#123;    # 参数是目录路径    out_root=$2    for file in $1    do        # 是文件则开始压缩        echo $file        if test -f $file        then            path=$&#123;file:$3&#125;            # %/* 从右边开始取第一个/然后把他右边的字符都删掉，因为创建目录不能用文件名去创建            dir=$out_root$&#123;path
+12345678910111213141516171819202122232425262728293031323334353637383940#!bin/shfunction searchFile() &#123;    # 参数是目录路径    out_root=$2    for file in $1    do        # 是文件则开始压缩        echo $file        if test -f $file        then            path=$&#123;file:$3&#125;            # %/* 从右边开始取第一个/然后把他右边的字符都删掉，因为创建目录不能用文件名去创建            dir=$out_root$&#123;path%/*&#125;          
           ...
           <!--noindex-->
           <div class="post-button text-center">

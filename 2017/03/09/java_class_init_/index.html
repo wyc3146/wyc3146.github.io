@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="JVM,Java,class," />
+  <meta name="keywords" content="Java,JVM,class," />
 
 
 
@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="Java类加载和个块代码运行时机 Java类从加载到卸载的生命周期  加载(Loading)  |                    1、获取对应类的二进制字节流  |                    2、将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构。  ↓                    3、在堆中生成一个代表此类的java.lang.Class对象，作为方法区这">
-<meta name="keywords" content="JVM,Java,class">
+<meta name="description" content="Java类从加载到卸载的生命周期  加载(Loading)  |                    1、获取对应类的二进制字节流  |                    2、将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构。  ↓                    3、在堆中生成一个代表此类的java.lang.Class对象，作为方法区这些数据的访问入口。验证(Veri">
+<meta name="keywords" content="Java,JVM,class">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java_class_init">
+<meta property="og:title" content="Java类加载和个块代码运行时机">
 <meta property="og:url" content="http://yoursite.com/2017/03/09/java_class_init_/index.html">
 <meta property="og:site_name" content="Hogwarts">
-<meta property="og:description" content="Java类加载和个块代码运行时机 Java类从加载到卸载的生命周期  加载(Loading)  |                    1、获取对应类的二进制字节流  |                    2、将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构。  ↓                    3、在堆中生成一个代表此类的java.lang.Class对象，作为方法区这">
+<meta property="og:description" content="Java类从加载到卸载的生命周期  加载(Loading)  |                    1、获取对应类的二进制字节流  |                    2、将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构。  ↓                    3、在堆中生成一个代表此类的java.lang.Class对象，作为方法区这些数据的访问入口。验证(Veri">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-28T03:26:22.716Z">
+<meta property="og:updated_time" content="2018-08-28T07:14:22.740Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="java_class_init">
-<meta name="twitter:description" content="Java类加载和个块代码运行时机 Java类从加载到卸载的生命周期  加载(Loading)  |                    1、获取对应类的二进制字节流  |                    2、将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构。  ↓                    3、在堆中生成一个代表此类的java.lang.Class对象，作为方法区这">
+<meta name="twitter:title" content="Java类加载和个块代码运行时机">
+<meta name="twitter:description" content="Java类从加载到卸载的生命周期  加载(Loading)  |                    1、获取对应类的二进制字节流  |                    2、将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构。  ↓                    3、在堆中生成一个代表此类的java.lang.Class对象，作为方法区这些数据的访问入口。验证(Veri">
 
 
 
@@ -128,7 +128,7 @@
 
 
 
-  <title>java_class_init | Hogwarts</title>
+  <title>Java类加载和个块代码运行时机 | Hogwarts</title>
   
 
 
@@ -281,7 +281,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">java_class_init</h1>
+          <h1 class="post-title" itemprop="name headline">Java类加载和个块代码运行时机</h1>
         
 
         <div class="post-meta">
@@ -364,7 +364,7 @@
       
 
       
-        <h1 id="Java类加载和个块代码运行时机"><a href="#Java类加载和个块代码运行时机" class="headerlink" title="Java类加载和个块代码运行时机"></a>Java类加载和个块代码运行时机</h1><blockquote>
+        <blockquote>
 <p>Java类从加载到卸载的生命周期</p>
 </blockquote>
 <p>加载(Loading)<br>  |                    1、获取对应类的二进制字节流<br>  |                    2、将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构。<br>  ↓                    3、在堆中生成一个代表此类的java.lang.Class对象，作为方法区这些数据的访问入口。<br>验证(Verification)<br>  |                    1、文件格式验证(0xCAFEBABE，主、次版本号)<br>  |                    2、元数据验证<br>  |                    3、字节码验证<br>  ↓                    4、符号引用验证<br>准备(Preparation)<br>  |                    为类的静态变量分配内存并将其初始化为默认值(如static a=1,给a分配值0)，这些内存都将<br>  |                    在方法区中进行分配。<br>  ↓<br>解析(Resolution)<br>  |                    解析阶段是虚拟机将常量池内的符号引用替换为直接引用的过程。<br>  ↓<br>初始化(Initialization)<br>  |                    执行类构造器<clinit>()方法。<clinit>()方法是由编译器自动收集类中的所有类变量的赋值<br>  |                    动作和静态语句块(static{}块)中的语句合并产生的。<br>  ↓<br>使用(Using)<br>  ↓<br>卸载(Unloading)</clinit></clinit></p>
@@ -404,9 +404,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/JVM/" rel="tag"># JVM</a>
-          
             <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/JVM/" rel="tag"># JVM</a>
           
             <a href="/tags/class/" rel="tag"># class</a>
           
@@ -421,8 +421,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/08/jvm-option/" rel="next" title="jvm_option_collection">
-                <i class="fa fa-chevron-left"></i> jvm_option_collection
+              <a href="/2017/03/08/jvm-option/" rel="next" title="JVM常用参数集合">
+                <i class="fa fa-chevron-left"></i> JVM常用参数集合
               </a>
             
           </div>
@@ -431,8 +431,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/02/12/bitwise_operation_in_java/" rel="prev" title="bitwise_operation_in_java">
-                bitwise_operation_in_java <i class="fa fa-chevron-right"></i>
+              <a href="/2018/02/12/bitwise_operation_in_java/" rel="prev" title="Java中的位运算">
+                Java中的位运算 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -495,17 +495,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -572,22 +563,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java类加载和个块代码运行时机"><span class="nav-number">1.</span> <span class="nav-text">Java类加载和个块代码运行时机</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -761,7 +736,7 @@
         var disqus_config = function () {
           this.page.url = 'http://yoursite.com/2017/03/09/java_class_init_/';
           this.page.identifier = '2017/03/09/java_class_init_/';
-          this.page.title = 'java_class_init';
+          this.page.title = 'Java类加载和个块代码运行时机';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://.disqus.com/embed.js';

@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="JDK SPI实现原理SPI全称Service Provider Interface，是JDK官方提供的一种服务发现(look up)机制。 一般分为接口提供方和接口实现方，权威方提供接口标准（如JDBC标准，是由JDK提供的用于数据库连接的标准接口），接口实现方提供具体实现（如针对JDBC的mysql实现是由mysql官方提供的）。 下面我们通过mysql的实现来了解一下SPI具体是怎么工作的。">
+<meta name="description" content="SPI全称Service Provider Interface，是JDK官方提供的一种服务发现(look up)机制。 一般分为接口提供方和接口实现方，权威方提供接口标准（如JDBC标准，是由JDK提供的用于数据库连接的标准接口），接口实现方提供具体实现（如针对JDBC的mysql实现是由mysql官方提供的）。 下面我们通过mysql的实现来了解一下SPI具体是怎么工作的。 mysql-conn">
 <meta name="keywords" content="JDK,SPI">
 <meta property="og:type" content="article">
-<meta property="og:title" content="jdk_spi">
+<meta property="og:title" content="JDK SPI实现原理">
 <meta property="og:url" content="http://yoursite.com/2018/05/27/jdk_spi/index.html">
 <meta property="og:site_name" content="Hogwarts">
-<meta property="og:description" content="JDK SPI实现原理SPI全称Service Provider Interface，是JDK官方提供的一种服务发现(look up)机制。 一般分为接口提供方和接口实现方，权威方提供接口标准（如JDBC标准，是由JDK提供的用于数据库连接的标准接口），接口实现方提供具体实现（如针对JDBC的mysql实现是由mysql官方提供的）。 下面我们通过mysql的实现来了解一下SPI具体是怎么工作的。">
+<meta property="og:description" content="SPI全称Service Provider Interface，是JDK官方提供的一种服务发现(look up)机制。 一般分为接口提供方和接口实现方，权威方提供接口标准（如JDBC标准，是由JDK提供的用于数据库连接的标准接口），接口实现方提供具体实现（如针对JDBC的mysql实现是由mysql官方提供的）。 下面我们通过mysql的实现来了解一下SPI具体是怎么工作的。 mysql-conn">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-28T06:15:20.463Z">
+<meta property="og:updated_time" content="2018-08-28T07:14:32.116Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="jdk_spi">
-<meta name="twitter:description" content="JDK SPI实现原理SPI全称Service Provider Interface，是JDK官方提供的一种服务发现(look up)机制。 一般分为接口提供方和接口实现方，权威方提供接口标准（如JDBC标准，是由JDK提供的用于数据库连接的标准接口），接口实现方提供具体实现（如针对JDBC的mysql实现是由mysql官方提供的）。 下面我们通过mysql的实现来了解一下SPI具体是怎么工作的。">
+<meta name="twitter:title" content="JDK SPI实现原理">
+<meta name="twitter:description" content="SPI全称Service Provider Interface，是JDK官方提供的一种服务发现(look up)机制。 一般分为接口提供方和接口实现方，权威方提供接口标准（如JDBC标准，是由JDK提供的用于数据库连接的标准接口），接口实现方提供具体实现（如针对JDBC的mysql实现是由mysql官方提供的）。 下面我们通过mysql的实现来了解一下SPI具体是怎么工作的。 mysql-conn">
 
 
 
@@ -128,7 +128,7 @@
 
 
 
-  <title>jdk_spi | Hogwarts</title>
+  <title>JDK SPI实现原理 | Hogwarts</title>
   
 
 
@@ -281,7 +281,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">jdk_spi</h1>
+          <h1 class="post-title" itemprop="name headline">JDK SPI实现原理</h1>
         
 
         <div class="post-meta">
@@ -364,7 +364,7 @@
       
 
       
-        <h1 id="JDK-SPI实现原理"><a href="#JDK-SPI实现原理" class="headerlink" title="JDK SPI实现原理"></a>JDK SPI实现原理</h1><p>SPI全称Service Provider Interface，是JDK官方提供的一种服务发现(look up)机制。</p>
+        <p>SPI全称Service Provider Interface，是JDK官方提供的一种服务发现(look up)机制。</p>
 <p>一般分为接口提供方和接口实现方，权威方提供接口标准（如JDBC标准，是由JDK提供的用于数据库连接的标准接口），接口实现方提供具体实现（如针对JDBC的mysql实现是由mysql官方提供的）。</p>
 <p>下面我们通过mysql的实现来了解一下SPI具体是怎么工作的。</p>
 <p>mysql-connector-java的jar包中，有META-INF/services/java.sql.Driver文件，内容如下</p>
@@ -423,8 +423,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/08/27/deploy_shadowsocks_with_docker/" rel="prev" title="deploy_shadowsocks_with_docker">
-                deploy_shadowsocks_with_docker <i class="fa fa-chevron-right"></i>
+              <a href="/2018/08/27/deploy_shadowsocks_with_docker/" rel="prev" title="用Docker部署shadowsocks">
+                用Docker部署shadowsocks <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -487,17 +487,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -564,22 +555,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JDK-SPI实现原理"><span class="nav-number">1.</span> <span class="nav-text">JDK SPI实现原理</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -753,7 +728,7 @@
         var disqus_config = function () {
           this.page.url = 'http://yoursite.com/2018/05/27/jdk_spi/';
           this.page.identifier = '2018/05/27/jdk_spi/';
-          this.page.title = 'jdk_spi';
+          this.page.title = 'JDK SPI实现原理';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://.disqus.com/embed.js';

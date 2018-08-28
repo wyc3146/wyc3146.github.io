@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="Shell遍历和创建目录 需求：现在有一个文件处理脚本，可以将一个文件按一定规则处理并输出。 接收两个参数：   $1，文件输出路径   $2，原文件路径现在需要写一个脚本，通过传递一个路径来把该路径下的所有文件都通过这个脚本处理并输出  my_bash.sh 是文件处理脚本名 123456789101112131415161718192021222324252627282930313233343">
+<meta name="description" content="需求：现在有一个文件处理脚本，可以将一个文件按一定规则处理并输出。接收两个参数：$1，文件输出路径$2，原文件路径现在需要写一个脚本，通过传递一个路径来把该路径下的所有文件都通过这个脚本处理并输出  my_bash.sh 是文件处理脚本名 12345678910111213141516171819202122232425262728293031323334353637383940#!bin/sh">
 <meta name="keywords" content="Shell,Linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="shell_read_and_create_dir">
+<meta property="og:title" content="Shell遍历和创建目录">
 <meta property="og:url" content="http://yoursite.com/2017/02/18/shell_read_and_create_dir/index.html">
 <meta property="og:site_name" content="Hogwarts">
-<meta property="og:description" content="Shell遍历和创建目录 需求：现在有一个文件处理脚本，可以将一个文件按一定规则处理并输出。 接收两个参数：   $1，文件输出路径   $2，原文件路径现在需要写一个脚本，通过传递一个路径来把该路径下的所有文件都通过这个脚本处理并输出  my_bash.sh 是文件处理脚本名 123456789101112131415161718192021222324252627282930313233343">
+<meta property="og:description" content="需求：现在有一个文件处理脚本，可以将一个文件按一定规则处理并输出。接收两个参数：$1，文件输出路径$2，原文件路径现在需要写一个脚本，通过传递一个路径来把该路径下的所有文件都通过这个脚本处理并输出  my_bash.sh 是文件处理脚本名 12345678910111213141516171819202122232425262728293031323334353637383940#!bin/sh">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-28T03:26:22.717Z">
+<meta property="og:updated_time" content="2018-08-28T07:15:20.868Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="shell_read_and_create_dir">
-<meta name="twitter:description" content="Shell遍历和创建目录 需求：现在有一个文件处理脚本，可以将一个文件按一定规则处理并输出。 接收两个参数：   $1，文件输出路径   $2，原文件路径现在需要写一个脚本，通过传递一个路径来把该路径下的所有文件都通过这个脚本处理并输出  my_bash.sh 是文件处理脚本名 123456789101112131415161718192021222324252627282930313233343">
+<meta name="twitter:title" content="Shell遍历和创建目录">
+<meta name="twitter:description" content="需求：现在有一个文件处理脚本，可以将一个文件按一定规则处理并输出。接收两个参数：$1，文件输出路径$2，原文件路径现在需要写一个脚本，通过传递一个路径来把该路径下的所有文件都通过这个脚本处理并输出  my_bash.sh 是文件处理脚本名 12345678910111213141516171819202122232425262728293031323334353637383940#!bin/sh">
 
 
 
@@ -128,7 +128,7 @@
 
 
 
-  <title>shell_read_and_create_dir | Hogwarts</title>
+  <title>Shell遍历和创建目录 | Hogwarts</title>
   
 
 
@@ -281,7 +281,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">shell_read_and_create_dir</h1>
+          <h1 class="post-title" itemprop="name headline">Shell遍历和创建目录</h1>
         
 
         <div class="post-meta">
@@ -364,9 +364,8 @@
       
 
       
-        <h2 id="Shell遍历和创建目录"><a href="#Shell遍历和创建目录" class="headerlink" title="Shell遍历和创建目录"></a>Shell遍历和创建目录</h2><blockquote>
-<p>需求：现在有一个文件处理脚本，可以将一个文件按一定规则处理并输出。</p>
-<p>接收两个参数：<br>   $1，文件输出路径<br>   $2，原文件路径<br>现在需要写一个脚本，通过传递一个路径来把该路径下的所有文件都通过这个脚本处理并输出</p>
+        <blockquote>
+<p>需求：现在有一个文件处理脚本，可以将一个文件按一定规则处理并输出。<br>接收两个参数：<br>$1，文件输出路径<br>$2，原文件路径<br>现在需要写一个脚本，通过传递一个路径来把该路径下的所有文件都通过这个脚本处理并输出</p>
 </blockquote>
 <p>my_bash.sh 是文件处理脚本名</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!bin/sh</span><br><span class="line"></span><br><span class="line">function searchFile() &#123;</span><br><span class="line">    # 参数是目录路径</span><br><span class="line">    out_root=$2</span><br><span class="line">    for file in $1</span><br><span class="line">    do</span><br><span class="line">        # 是文件则开始压缩</span><br><span class="line">        echo $file</span><br><span class="line">        if test -f $file</span><br><span class="line">        then</span><br><span class="line">            path=$&#123;file:$3&#125;</span><br><span class="line">            # %/* 从右边开始取第一个/然后把他右边的字符都删掉，因为创建目录不能用文件名去创建</span><br><span class="line">            dir=$out_root$&#123;path%/*&#125;</span><br><span class="line">            mkdir -p $dir</span><br><span class="line">            my_bash.sh "$2$path" "$file"</span><br><span class="line">        fi</span><br><span class="line">        if test -d $file</span><br><span class="line">        then</span><br><span class="line">            # $file不带/，所以加上/ </span><br><span class="line">            searchFile "$file/*" $2 $3</span><br><span class="line">        fi</span><br><span class="line">    done</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">input_dir=$1</span><br><span class="line">output_dir=$2</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>如果路径最后一个字符是/，删除之</span><br><span class="line">if [ $&#123;input_dir:0-1&#125; == '/' ]</span><br><span class="line">then</span><br><span class="line">    input_dir=$&#123;input_dir%/*&#125;</span><br><span class="line">fi</span><br><span class="line">if [ $&#123;output_dir:0-1&#125; == '/' ]</span><br><span class="line">then</span><br><span class="line">    output_dir=$&#123;output_dir%/*&#125;</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 输入路径 输出路径 输入路径的长度</span><br><span class="line">searchFile $input_dir $output_dir $&#123;#input_dir&#125;</span><br></pre></td></tr></table></figure>
@@ -414,8 +413,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/03/08/jvm-option/" rel="prev" title="jvm_option_collection">
-                jvm_option_collection <i class="fa fa-chevron-right"></i>
+              <a href="/2017/03/08/jvm-option/" rel="prev" title="JVM常用参数集合">
+                JVM常用参数集合 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -478,17 +477,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -555,22 +545,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Shell遍历和创建目录"><span class="nav-number">1.</span> <span class="nav-text">Shell遍历和创建目录</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -744,7 +718,7 @@
         var disqus_config = function () {
           this.page.url = 'http://yoursite.com/2017/02/18/shell_read_and_create_dir/';
           this.page.identifier = '2017/02/18/shell_read_and_create_dir/';
-          this.page.title = 'shell_read_and_create_dir';
+          this.page.title = 'Shell遍历和创建目录';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://.disqus.com/embed.js';
