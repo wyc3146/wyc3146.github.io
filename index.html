@@ -533,17 +533,11 @@ List不用说，这是一个List基础操作接口。RandomAccess表式这个接
           
           最近了解了下Docker容器的基础知识，就想着将自己服务器上的服务都容器化，方便管理，还能让机器保持整洁不需要安装稀奇古怪的依赖，直接pull一个对应服务的镜像就好了。
 就先从shadowsocks开始吧，这篇主要就讲如何在linux机器上通过Docker部署一个Shadowsocks服务。
-
-下载容器
-
-docker pull mritd/shadowsocks
+下载容器docker pull mritd/shadowsocks
 首先保证已经安装好Docker环境，通过一条命令就可以拉取远程的镜像。mritd/shadowsocks这个镜像是dockerhub上pull次数最多的shadowsocks服务镜像，我就以这个镜像来部署。这个镜像即成了shadowsocks-libev、kcptun、simple-obfs，我这里只用到shadowsocks-libev。
-
-启动容器
-
-启动一个最简单的ss服务测试一下
+启动容器启动一个最简单的ss服务测试一下
 1docker run -dt --name ss -p 6443:6443 mritd/shadowsocks -s "-s 0.0.0.0 -p 6443 -m aes-256-cfb -k test123 --fast-open"
-依
+依次分析各个参
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -652,8 +646,8 @@ docker pull mritd/shadowsocks
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JDK/" itemprop="url" rel="index">
-                    <span itemprop="name">JDK</span>
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
                   </a>
                 </span>
 
@@ -872,16 +866,9 @@ SPI约定提供方需要在META-INF/services/目录下创建以接口名(包括�
 123&lt;dubbo:application name=""  /&gt;&lt;dubbo:registry protocol="zookeeper" address=""/&gt;&lt;dubbo:reference id="test" interface="" check="false"/&gt;
 诸如以上这些标签，都是dubbo程序自己根据需要创建的自定义表情。
 Spring支持自建scheme来描述一些自定义的xml bean，对于普通开发者来说意义不大，但是对于一些第三方组件来说很有用，可以开发自己的标签来提供给用户配置。
-
-实现原理
-
-Spring通过解析xml的内容，通过namespace找到标签对应的xsd文件和解析器的类。先根据xsd的规则检验配置文件是否符合规则，再根据配置的NamespaceHandler将标签配置内容转换成Bean交给Spring管理。
-
-简单例子
-
-下面通过一个简单的例子来看一下Spring自定义标签的过程。
-1、定义一个需要配置的Bean
-1
+实现原理Spring通过解析xml的内容，通过namespace找到标签对应的xsd文件和解析器的类。先根据xsd的规则检验配置文件是否符合规则，再根据配置的NamespaceHandler将标签配置内容转换成Bean交给Spring管理。
+简单例子下面通过一个简单的例子来看一下Spring自定义标签的过程。
+定义一个需要配置的Bean12345publi
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1979,7 +1966,7 @@ my_bash.sh 是文件处理脚本名
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>
@@ -1990,7 +1977,7 @@ my_bash.sh 是文件处理脚本名
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>

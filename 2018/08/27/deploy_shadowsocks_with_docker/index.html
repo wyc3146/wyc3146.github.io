@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="最近了解了下Docker容器的基础知识，就想着将自己服务器上的服务都容器化，方便管理，还能让机器保持整洁不需要安装稀奇古怪的依赖，直接pull一个对应服务的镜像就好了。 就先从shadowsocks开始吧，这篇主要就讲如何在linux机器上通过Docker部署一个Shadowsocks服务。  下载容器  docker pull mritd/shadowsocks 首先保证已经安装好Docker环">
+<meta name="description" content="最近了解了下Docker容器的基础知识，就想着将自己服务器上的服务都容器化，方便管理，还能让机器保持整洁不需要安装稀奇古怪的依赖，直接pull一个对应服务的镜像就好了。 就先从shadowsocks开始吧，这篇主要就讲如何在linux机器上通过Docker部署一个Shadowsocks服务。 下载容器docker pull mritd/shadowsocks 首先保证已经安装好Docker环境，通">
 <meta name="keywords" content="Docker,Shadowsocks">
 <meta property="og:type" content="article">
 <meta property="og:title" content="用Docker部署shadowsocks">
 <meta property="og:url" content="http://yoursite.com/2018/08/27/deploy_shadowsocks_with_docker/index.html">
 <meta property="og:site_name" content="Hogwarts">
-<meta property="og:description" content="最近了解了下Docker容器的基础知识，就想着将自己服务器上的服务都容器化，方便管理，还能让机器保持整洁不需要安装稀奇古怪的依赖，直接pull一个对应服务的镜像就好了。 就先从shadowsocks开始吧，这篇主要就讲如何在linux机器上通过Docker部署一个Shadowsocks服务。  下载容器  docker pull mritd/shadowsocks 首先保证已经安装好Docker环">
+<meta property="og:description" content="最近了解了下Docker容器的基础知识，就想着将自己服务器上的服务都容器化，方便管理，还能让机器保持整洁不需要安装稀奇古怪的依赖，直接pull一个对应服务的镜像就好了。 就先从shadowsocks开始吧，这篇主要就讲如何在linux机器上通过Docker部署一个Shadowsocks服务。 下载容器docker pull mritd/shadowsocks 首先保证已经安装好Docker环境，通">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-28T07:14:05.656Z">
+<meta property="og:updated_time" content="2018-08-29T09:55:55.869Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用Docker部署shadowsocks">
-<meta name="twitter:description" content="最近了解了下Docker容器的基础知识，就想着将自己服务器上的服务都容器化，方便管理，还能让机器保持整洁不需要安装稀奇古怪的依赖，直接pull一个对应服务的镜像就好了。 就先从shadowsocks开始吧，这篇主要就讲如何在linux机器上通过Docker部署一个Shadowsocks服务。  下载容器  docker pull mritd/shadowsocks 首先保证已经安装好Docker环">
+<meta name="twitter:description" content="最近了解了下Docker容器的基础知识，就想着将自己服务器上的服务都容器化，方便管理，还能让机器保持整洁不需要安装稀奇古怪的依赖，直接pull一个对应服务的镜像就好了。 就先从shadowsocks开始吧，这篇主要就讲如何在linux机器上通过Docker部署一个Shadowsocks服务。 下载容器docker pull mritd/shadowsocks 首先保证已经安装好Docker环境，通">
 
 
 
@@ -366,15 +366,9 @@
       
         <p>最近了解了下Docker容器的基础知识，就想着将自己服务器上的服务都容器化，方便管理，还能让机器保持整洁不需要安装稀奇古怪的依赖，直接pull一个对应服务的镜像就好了。</p>
 <p>就先从shadowsocks开始吧，这篇主要就讲如何在linux机器上通过Docker部署一个Shadowsocks服务。</p>
-<blockquote>
-<p>下载容器</p>
-</blockquote>
-<p>docker pull mritd/shadowsocks</p>
+<h3 id="下载容器"><a href="#下载容器" class="headerlink" title="下载容器"></a>下载容器</h3><p>docker pull mritd/shadowsocks</p>
 <p>首先保证已经安装好Docker环境，通过一条命令就可以拉取远程的镜像。mritd/shadowsocks这个镜像是dockerhub上pull次数最多的shadowsocks服务镜像，我就以这个镜像来部署。这个镜像即成了shadowsocks-libev、kcptun、simple-obfs，我这里只用到shadowsocks-libev。</p>
-<blockquote>
-<p>启动容器</p>
-</blockquote>
-<p>启动一个最简单的ss服务测试一下</p>
+<h3 id="启动容器"><a href="#启动容器" class="headerlink" title="启动容器"></a>启动容器</h3><p>启动一个最简单的ss服务测试一下</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -dt --name ss -p 6443:6443 mritd/shadowsocks -s "-s 0.0.0.0 -p 6443 -m aes-256-cfb -k test123 --fast-open"</span><br></pre></td></tr></table></figure>
 <p>依次分析各个参数作用。</p>
 <p>-d 后台启动，如果不指定，退出后容器就会停止</p>
@@ -382,10 +376,7 @@
 <p>-p 端口映射宿主主机的6443端口映射到容器6443端口</p>
 <p>-s 指定ss-server命令后面的执行参数</p>
 <p>执行上面的命令，用docker ps查看正在运行的容器状态，发现已经启动。本地用shadowsocks客户端连接可以连接成功，说明已经可以正常使用了。</p>
-<blockquote>
-<p>通过config.json配置服务</p>
-</blockquote>
-<p>上面这种方式只支持单端口的ss服务，我之前的ss服务是通过json配置文件配置了多个服务端口。在github上提issue给镜像作者，给的答复是这个</p>
+<h3 id="通过config-json配置服务"><a href="#通过config-json配置服务" class="headerlink" title="通过config.json配置服务"></a>通过config.json配置服务</h3><p>上面这种方式只支持单端口的ss服务，我之前的ss服务是通过json配置文件配置了多个服务端口。在github上提issue给镜像作者，给的答复是这个</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -dt --name ssserver -p 6443:6443 -p 6500:6500/udp -v `pwd`/config.json:/config.json mritd/shadowsocks -m "ss-server" -s "-c /config.json" -x -e "kcpserver" -k "-t 127.0.0.1:6443 -l :6500 -mode fast2"</span><br></pre></td></tr></table></figure>
 <p>然而根据给定的配置，不能正常启动ss容器。没办法，提issue一来一回太麻烦了，自己研究吧。</p>
 <p>上面通过指定-c config.json方式启动，容器直接结束了，也看不到输出信息。（我对docker不太熟，可能有方法看到输出信息）</p>
@@ -513,8 +504,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -540,7 +540,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>
@@ -551,7 +551,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -581,6 +581,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#下载容器"><span class="nav-number">1.</span> <span class="nav-text">下载容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动容器"><span class="nav-number">2.</span> <span class="nav-text">启动容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过config-json配置服务"><span class="nav-number">3.</span> <span class="nav-text">通过config.json配置服务</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
