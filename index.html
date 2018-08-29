@@ -263,6 +263,170 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/29/copy_on_write_array_list/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sirius Black">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hogwarts">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/29/copy_on_write_array_list/" itemprop="url">Java并发包 - CopyOnWriteArrayList</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-29T19:05:00+08:00">
+                2018-08-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/29/copy_on_write_array_list/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/08/29/copy_on_write_array_list/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          CopyOnWriteArrayList是JDK并发包里面的一个类，用于提供可以多线程并发访问的一个List结构。比较适合在读取多改动少的情景下使用，看名字就可知基本原理，是在写入的时候不直接操作原数组，而是重新拷贝一个新的数组在新的数组里进行写入操作。
+源码分析先来看看这个类的继承结构，没有继承任何类，但是实现了4个接口，包括1个普通接口List和3个标记接口。
+12public class CopyOnWriteArrayList&lt;E&gt;    implements List&lt;E&gt;, RandomAccess, Cloneable, java.io.Serializable
+List不用说，这是一个List基础操作接口。RandomAccess表式这个接口支持随机访问，即随机访问的时间复杂度是O(1)；Cloneable表示这个类可以被clone()；Serializable表示这个类可以被序列化和反序列化。
+下面我们就用List操作中最常用的几个方法(get、add、remove、set)来分析CopyOnWriteArrayList是如何实现线程安全的。
+
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/29/copy_on_write_array_list/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/27/deploy_shadowsocks_with_docker/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -384,171 +548,6 @@ docker pull mritd/shadowsocks
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/08/27/deploy_shadowsocks_with_docker/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/27/copy_on_write_array_list/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Sirius Black">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hogwarts">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/27/copy_on_write_array_list/" itemprop="url">Java并发包 - CopyOnWriteArrayList</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-27T19:05:00+08:00">
-                2018-08-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/08/27/copy_on_write_array_list/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/08/27/copy_on_write_array_list/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          ​    CopyOnWriteArrayList是JDK并发包里面的一个类，用于提供可以多线程并发访问的一个List结构。比较适合在读取多改动少的情景下使用，看名字就可知基本原理，是在写入的时候重新拷贝一个新的数组在新的数组里进行写入操作。
-​    先来看看这个类的继承结构，没有继承任何类，但是实现了4个接口，包括1个普通接口List和3个标记接口。
-12public class CopyOnWriteArrayList&lt;E&gt;    implements List&lt;E&gt;, RandomAccess, Cloneable, java.io.Serializable
-List不用说，这是一个List基础操作接口。RandomAccess表式这个接口支持随机访问，即随机访问的时间复杂度是O(1)；Cloneable表示这个类可以被clone()；Serializable表示这个类可以被序列化和反序列化。
-下面我们就用List操作中最常用的几个方法(get、add、remove、set)来分析CopyOnWriteArrayList是如何实现线程安全的。
-
-读取元素
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/27/copy_on_write_array_list/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
