@@ -1532,10 +1532,9 @@ Direct or Heap，内存用的是堆内存还是直接内存HeapByteBuf，目前�
 @前面是新建用户的账号，@后面是可以访问到的ip，identified by后面跟该用户的初始密码。
 也可以指定ip或者直接用%来表示允许所有地址访问
 1create user &apos;test_user&apos;@&apos;%&apos; identified by &apos;123456&apos;
-####分配指定数据库权限
-授予用户通过指定ip访问数据库的权限
+分配指定数据库权限授予用户通过指定ip访问数据库的权限
 1grant all privileges on `test_database`.* to &apos;test_user&apos;@&apos;%&apos; ;
-也可以跳过创建用户步骤，直接用这个命令一起创建用户和
+也可以跳过创建用户步骤，直接用这个命令一起创建用户和分配表权限
           ...
           <!--noindex-->
           <div class="post-button text-center">
