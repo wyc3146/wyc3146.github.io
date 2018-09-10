@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Shell,Linux," />
+  <meta name="keywords" content="mysql," />
 
 
 
@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="需求：现在有一个文件处理脚本，可以将一个文件按一定规则处理并输出。接收两个参数：$1，文件输出路径$2，原文件路径现在需要写一个脚本，通过传递一个路径来把该路径下的所有文件都通过这个脚本处理并输出  my_bash.sh 是文件处理脚本名 12345678910111213141516171819202122232425262728293031323334353637383940#!bin/sh">
-<meta name="keywords" content="Shell,Linux">
+<meta name="description" content="下面以添加用户test_user、将数据库test_database授权给test_user为例创建分配用户权限。 添加新用户允许指定ip段(192.168.1.0~192.168.1.255)用该用户访问数据库 1create user &amp;apos;test_user&amp;apos;@&amp;apos;192.168.1.%&amp;apos; identified by &amp;apos;123456&amp;apos; @">
+<meta name="keywords" content="mysql">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Shell遍历和创建目录">
-<meta property="og:url" content="http://yoursite.com/2017/02/18/shell_read_and_create_dir/index.html">
+<meta property="og:title" content="mysql创建用户">
+<meta property="og:url" content="http://yoursite.com/2017/09/29/mysql_create_user/index.html">
 <meta property="og:site_name" content="Hogwarts">
-<meta property="og:description" content="需求：现在有一个文件处理脚本，可以将一个文件按一定规则处理并输出。接收两个参数：$1，文件输出路径$2，原文件路径现在需要写一个脚本，通过传递一个路径来把该路径下的所有文件都通过这个脚本处理并输出  my_bash.sh 是文件处理脚本名 12345678910111213141516171819202122232425262728293031323334353637383940#!bin/sh">
+<meta property="og:description" content="下面以添加用户test_user、将数据库test_database授权给test_user为例创建分配用户权限。 添加新用户允许指定ip段(192.168.1.0~192.168.1.255)用该用户访问数据库 1create user &amp;apos;test_user&amp;apos;@&amp;apos;192.168.1.%&amp;apos; identified by &amp;apos;123456&amp;apos; @">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-28T07:15:20.868Z">
+<meta property="og:updated_time" content="2018-09-10T11:12:13.789Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Shell遍历和创建目录">
-<meta name="twitter:description" content="需求：现在有一个文件处理脚本，可以将一个文件按一定规则处理并输出。接收两个参数：$1，文件输出路径$2，原文件路径现在需要写一个脚本，通过传递一个路径来把该路径下的所有文件都通过这个脚本处理并输出  my_bash.sh 是文件处理脚本名 12345678910111213141516171819202122232425262728293031323334353637383940#!bin/sh">
+<meta name="twitter:title" content="mysql创建用户">
+<meta name="twitter:description" content="下面以添加用户test_user、将数据库test_database授权给test_user为例创建分配用户权限。 添加新用户允许指定ip段(192.168.1.0~192.168.1.255)用该用户访问数据库 1create user &amp;apos;test_user&amp;apos;@&amp;apos;192.168.1.%&amp;apos; identified by &amp;apos;123456&amp;apos; @">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/02/18/shell_read_and_create_dir/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/09/29/mysql_create_user/"/>
 
 
 
 
 
-  <title>Shell遍历和创建目录 | Hogwarts</title>
+  <title>mysql创建用户 | Hogwarts</title>
   
 
 
@@ -264,7 +264,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/18/shell_read_and_create_dir/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/29/mysql_create_user/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Sirius Black">
@@ -281,7 +281,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Shell遍历和创建目录</h1>
+          <h1 class="post-title" itemprop="name headline">mysql创建用户</h1>
         
 
         <div class="post-meta">
@@ -293,8 +293,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-18T18:30:30+08:00">
-                2017-02-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-29T19:12:11+08:00">
+                2017-09-29
               </time>
             
 
@@ -316,8 +316,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Shell/" itemprop="url" rel="index">
-                    <span itemprop="name">Shell</span>
+                  <a href="/categories/mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">mysql</span>
                   </a>
                 </span>
 
@@ -334,9 +334,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/02/18/shell_read_and_create_dir/#comments" itemprop="discussionUrl">
+                <a href="/2017/09/29/mysql_create_user/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/02/18/shell_read_and_create_dir/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/09/29/mysql_create_user/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -364,17 +364,27 @@
       
 
       
-        <blockquote>
-<p>需求：现在有一个文件处理脚本，可以将一个文件按一定规则处理并输出。<br>接收两个参数：<br>$1，文件输出路径<br>$2，原文件路径<br>现在需要写一个脚本，通过传递一个路径来把该路径下的所有文件都通过这个脚本处理并输出</p>
-</blockquote>
-<p>my_bash.sh 是文件处理脚本名</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!bin/sh</span><br><span class="line"></span><br><span class="line">function searchFile() &#123;</span><br><span class="line">    # 参数是目录路径</span><br><span class="line">    out_root=$2</span><br><span class="line">    for file in $1</span><br><span class="line">    do</span><br><span class="line">        # 是文件则开始压缩</span><br><span class="line">        echo $file</span><br><span class="line">        if test -f $file</span><br><span class="line">        then</span><br><span class="line">            path=$&#123;file:$3&#125;</span><br><span class="line">            # %/* 从右边开始取第一个/然后把他右边的字符都删掉，因为创建目录不能用文件名去创建</span><br><span class="line">            dir=$out_root$&#123;path%/*&#125;</span><br><span class="line">            mkdir -p $dir</span><br><span class="line">            my_bash.sh "$2$path" "$file"</span><br><span class="line">        fi</span><br><span class="line">        if test -d $file</span><br><span class="line">        then</span><br><span class="line">            # $file不带/，所以加上/ </span><br><span class="line">            searchFile "$file/*" $2 $3</span><br><span class="line">        fi</span><br><span class="line">    done</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">input_dir=$1</span><br><span class="line">output_dir=$2</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>如果路径最后一个字符是/，删除之</span><br><span class="line">if [ $&#123;input_dir:0-1&#125; == '/' ]</span><br><span class="line">then</span><br><span class="line">    input_dir=$&#123;input_dir%/*&#125;</span><br><span class="line">fi</span><br><span class="line">if [ $&#123;output_dir:0-1&#125; == '/' ]</span><br><span class="line">then</span><br><span class="line">    output_dir=$&#123;output_dir%/*&#125;</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 输入路径 输出路径 输入路径的长度</span><br><span class="line">searchFile $input_dir $output_dir $&#123;#input_dir&#125;</span><br></pre></td></tr></table></figure>
-<p>两个参数，\$1 输入路径  \$输出路口</p>
-<p>主要遇到的问题：</p>
-<ul>
-<li>用户输入的参数结尾有可能带/，也有可能不带/，所以在调用处理函数之前先统一格式</li>
-<li>遍历文件夹，文件夹名后+*<em>（如/data1/\</em>）<em>表示该文件夹下所有子文件夹和文件组成的字符串 </em>（空格隔开）*</li>
-</ul>
+        <p>下面以添加用户test_user、将数据库test_database授权给test_user为例创建分配用户权限。</p>
+<h4 id="添加新用户"><a href="#添加新用户" class="headerlink" title="添加新用户"></a>添加新用户</h4><p>允许指定ip段(192.168.1.0~192.168.1.255)用该用户访问数据库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create user &apos;test_user&apos;@&apos;192.168.1.%&apos; identified by &apos;123456&apos;</span><br></pre></td></tr></table></figure>
+<p>@前面是新建用户的账号，@后面是可以访问到的ip，identified by后面跟该用户的初始密码。</p>
+<p>也可以指定ip或者直接用%来表示允许所有地址访问</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create user &apos;test_user&apos;@&apos;%&apos; identified by &apos;123456&apos;</span><br></pre></td></tr></table></figure>
+<p>####分配指定数据库权限</p>
+<p>授予用户通过指定ip访问数据库的权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grant all privileges on `test_database`.* to &apos;test_user&apos;@&apos;%&apos; ;</span><br></pre></td></tr></table></figure>
+<p>也可以跳过创建用户步骤，直接用这个命令一起创建用户和分配表权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grant all privileges on `test_database`.* to &apos;test_user&apos;@&apos;%&apos; identified by &apos;123456&apos;;</span><br></pre></td></tr></table></figure>
+<p>####撤销权限</p>
+<p>撤销指定用户的指定权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">revoke all privileges ON `test_database`.* FROM &apos;test_user&apos;@&apos;%&apos;;</span><br></pre></td></tr></table></figure>
+<p>注意只能根据分配的权限去撤销，比如我给test_user用户分配了test_database.*的权限，撤销的时候不能只撤销这个库的某张表，只能全部撤销。</p>
+<h4 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set password for &apos;user_test&apos;@&apos;%&apos; = PASSWORD(&apos;newpassword&apos;);</span><br></pre></td></tr></table></figure>
+<h4 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop user &apos;user_test&apos;@&apos;%&apos;;</span><br></pre></td></tr></table></figure>
+<h4 id="刷新权限配置"><a href="#刷新权限配置" class="headerlink" title="刷新权限配置"></a>刷新权限配置</h4><p>注意，以上这些操作都需要通过刷新命令刷新进数据库缓存才能正式生效。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flush privileges ;</span><br></pre></td></tr></table></figure>
+<h4 id="⚠️注意事项"><a href="#⚠️注意事项" class="headerlink" title="⚠️注意事项"></a>⚠️注意事项</h4><p>我在配置用户及权限的时候碰到一个问题，新增的用户如果加密码登录总是提示Access denied，但是所有用户都可以免密登录。最后发现是因为mysql.user表中有一条‘‘@’localhost’记录引起的，一些版本的mysql安装默认会有该用户，手动删除即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop user &apos;&apos;@&apos;localhost&apos;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -392,9 +402,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Shell/" rel="tag"># Shell</a>
-          
-            <a href="/tags/Linux/" rel="tag"># Linux</a>
+            <a href="/tags/mysql/" rel="tag"># mysql</a>
           
         </div>
       
@@ -407,14 +415,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/03/09/java_class_init_/" rel="next" title="Java类加载和个块代码运行时机">
+                <i class="fa fa-chevron-left"></i> Java类加载和个块代码运行时机
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/03/08/jvm-option/" rel="prev" title="JVM常用参数集合">
-                JVM常用参数集合 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/02/12/bitwise_operation_in_java/" rel="prev" title="Java中的位运算">
+                Java中的位运算 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -477,8 +489,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -545,6 +566,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#添加新用户"><span class="nav-number">1.</span> <span class="nav-text">添加新用户</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改密码"><span class="nav-number">2.</span> <span class="nav-text">修改密码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除用户"><span class="nav-number">3.</span> <span class="nav-text">删除用户</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#刷新权限配置"><span class="nav-number">4.</span> <span class="nav-text">刷新权限配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#⚠️注意事项"><span class="nav-number">5.</span> <span class="nav-text">⚠️注意事项</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -716,9 +753,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2017/02/18/shell_read_and_create_dir/';
-          this.page.identifier = '2017/02/18/shell_read_and_create_dir/';
-          this.page.title = 'Shell遍历和创建目录';
+          this.page.url = 'http://yoursite.com/2017/09/29/mysql_create_user/';
+          this.page.identifier = '2017/09/29/mysql_create_user/';
+          this.page.title = 'mysql创建用户';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://.disqus.com/embed.js';
