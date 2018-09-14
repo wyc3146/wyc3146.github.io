@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Java,JVM," />
+  <meta name="keywords" content="Java," />
 
 
 
@@ -81,20 +81,18 @@
 
 
 
-<meta name="description" content="实用型，会影响运行时环境 堆大小   -Xms            初始堆大小，默认内存的1/64(1GB) -Xmx            最大堆大小，默认物理内存的1/4 (&amp;lt;1GB) -Xmn            年轻带大小 -XX:MinHeapFreeRatio=40        FullGC后如果老年代剩余容量小于40%则扩容,默认是40 -XX:MaxHeapFreeRa">
-<meta name="keywords" content="Java,JVM">
+<meta name="description" content="​    Jshell是java9新出的基于Java语言的REPL(Read-Eval-Print Loop)命令行工具。它允许不适用类以及main方法就可以执行Java代码，类似于Python、JavaScript等脚本语言。可以说是一个非常好的工具，以后碰到需要测试否个不熟悉的方法或测试某个逻辑，再也不需要新建一个类写一个main方法或测试方法去运行，只要打开jshell输入命令执行就好了。">
+<meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JVM常用参数集合">
-<meta property="og:url" content="http://yoursite.com/2017/03/08/jvm-option/index.html">
+<meta property="og:title" content="jshell - Java官方的REPL工具">
+<meta property="og:url" content="http://yoursite.com/2018/09/13/jshell/index.html">
 <meta property="og:site_name" content="Hogwarts">
-<meta property="og:description" content="实用型，会影响运行时环境 堆大小   -Xms            初始堆大小，默认内存的1/64(1GB) -Xmx            最大堆大小，默认物理内存的1/4 (&amp;lt;1GB) -Xmn            年轻带大小 -XX:MinHeapFreeRatio=40        FullGC后如果老年代剩余容量小于40%则扩容,默认是40 -XX:MaxHeapFreeRa">
+<meta property="og:description" content="​    Jshell是java9新出的基于Java语言的REPL(Read-Eval-Print Loop)命令行工具。它允许不适用类以及main方法就可以执行Java代码，类似于Python、JavaScript等脚本语言。可以说是一个非常好的工具，以后碰到需要测试否个不熟悉的方法或测试某个逻辑，再也不需要新建一个类写一个main方法或测试方法去运行，只要打开jshell输入命令执行就好了。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://wyc3146.github.io/img/jvm_gc_option.jpg">
-<meta property="og:updated_time" content="2018-08-28T07:14:51.207Z">
+<meta property="og:updated_time" content="2018-09-14T07:21:03.765Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JVM常用参数集合">
-<meta name="twitter:description" content="实用型，会影响运行时环境 堆大小   -Xms            初始堆大小，默认内存的1/64(1GB) -Xmx            最大堆大小，默认物理内存的1/4 (&amp;lt;1GB) -Xmn            年轻带大小 -XX:MinHeapFreeRatio=40        FullGC后如果老年代剩余容量小于40%则扩容,默认是40 -XX:MaxHeapFreeRa">
-<meta name="twitter:image" content="https://wyc3146.github.io/img/jvm_gc_option.jpg">
+<meta name="twitter:title" content="jshell - Java官方的REPL工具">
+<meta name="twitter:description" content="​    Jshell是java9新出的基于Java语言的REPL(Read-Eval-Print Loop)命令行工具。它允许不适用类以及main方法就可以执行Java代码，类似于Python、JavaScript等脚本语言。可以说是一个非常好的工具，以后碰到需要测试否个不熟悉的方法或测试某个逻辑，再也不需要新建一个类写一个main方法或测试方法去运行，只要打开jshell输入命令执行就好了。">
 
 
 
@@ -124,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/03/08/jvm-option/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/09/13/jshell/"/>
 
 
 
 
 
-  <title>JVM常用参数集合 | Hogwarts</title>
+  <title>jshell - Java官方的REPL工具 | Hogwarts</title>
   
 
 
@@ -266,7 +264,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/08/jvm-option/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/13/jshell/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Sirius Black">
@@ -283,7 +281,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JVM常用参数集合</h1>
+          <h1 class="post-title" itemprop="name headline">jshell - Java官方的REPL工具</h1>
         
 
         <div class="post-meta">
@@ -295,8 +293,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-08T21:20:30+08:00">
-                2017-03-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-13T20:15:13+08:00">
+                2018-09-13
               </time>
             
 
@@ -318,8 +316,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JVM/" itemprop="url" rel="index">
-                    <span itemprop="name">JVM</span>
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
                   </a>
                 </span>
 
@@ -336,9 +334,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/03/08/jvm-option/#comments" itemprop="discussionUrl">
+                <a href="/2018/09/13/jshell/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/03/08/jvm-option/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/09/13/jshell/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -366,108 +364,22 @@
       
 
       
-        <h3 id="实用型，会影响运行时环境"><a href="#实用型，会影响运行时环境" class="headerlink" title="实用型，会影响运行时环境"></a>实用型，会影响运行时环境</h3><blockquote>
-<p>堆大小 </p>
-</blockquote>
-<p>-Xms            初始堆大小，默认内存的1/64(1GB)</p>
-<p>-Xmx            最大堆大小，默认物理内存的1/4 (&lt;1GB)</p>
-<p>-Xmn            年轻带大小</p>
-<p>-XX:MinHeapFreeRatio=40        FullGC后如果老年代剩余容量小于40%则扩容,默认是40</p>
-<p>-XX:MaxHeapFreeRatio=70        FullGC后如果老年代剩余容量大于70%则缩容,默认是70</p>
-<p>-XX:NewSize=5m                年轻带大小，和-Xmn同时存在则以-Xmn为主(hotspot 25.101-b13)</p>
-<p>-XX:MetaspaceSize            1.8以后的永久带大小初始值</p>
-<p>-XX:MaxMetaspaceSize        1.8以后的永久带最大值</p>
-<p>-XX:Xss=512k                    线程栈大小</p>
-<blockquote>
-<p>配合GC</p>
-</blockquote>
-<p>-XX:+DisableEx                屏蔽System.gc()</p>
-<p>-XX:MaxTenuringThreshold={n}        s区晋升最大次数</p>
-<p>-XX:CMSInitiatingOccupancyFraction={n}    CMS触发百分比</p>
-<p>-XX:+UseCMSCompactAtFullCollection        //CMS后进行碎片整理</p>
-<p>-XX:CMSFullGCsBeforeCompaction={n}        //CMS若干次后进行一次碎片</p>
-<p>-XX:ParalelCMSThreads                    //CMS线程数量</p>
-<p>-XX:ParalelGCThreads                        指定GC线程数量</p>
-<p>-XX:MaxGCPauseMills                        最大GC停顿时间</p>
-<p>-XX:GCTimeRatio                            垃圾收集时间占总时间的比</p>
-<p>大于3M的对象直接分配到old区,只能在ParNew和Serial使用,Parallel Scavenge不认识此参数</p>
-<p>-XX:Pretenuresizethreshold=3145728        </p>
-<p>每次Minor GC执行完以后，虚拟机会检查之前晋升到老年代的平均大小是否大于老年代的剩余空间大小，如果大于，则发起一次Full/Major GC，如果小于，则查看HandlePromotionFailure值是否允许担保失败，如果允许，那只会进行一次Minor GC。如果不允许失败，那么也要改为进行一次Full/Major GC</p>
-<p>-XX:+HandlePromotionFailure</p>
-<blockquote>
-<p>锁相关</p>
-</blockquote>
-<p>-XX:+DoEscapeAnalysis             开启逃逸分析</p>
-<p>-XX:+EliminateLocks                 锁消除,基于逃逸分析</p>
-<blockquote>
-<p>内存分配(<a href="http://www.cnblogs.com/java-zhao/p/5180492.html" target="_blank" rel="noopener">参考</a>)</p>
-</blockquote>
-<p> 在指针碰撞(Bump the Pointer)的内存分配方式中,为了防止每次给新对象分配内存都CAS申请内存,可以打开TLAB一次预先申请一小块内存给指定线程使用</p>
-<p> 另一种分配方式是空闲列表(Free List) ，空闲列表需要CAS吗？</p>
-<p>-XX:+UseTLAB                     打开本地线程分配缓冲区(Thread Local Allocation Buffer)</p>
-<p> 对象中的fields都是按照longs/doubles、ints、short/chars、bytes/booleans、opps(Ordianary Object Points)顺序分配的</p>
-<p>-XX:+CompactFields    将一些短类型插入header和long/doubles之间</p>
-<blockquote>
-<p>优化运行时环境</p>
-</blockquote>
-<p>-Xverify:none                        关闭字节码验证</p>
-<p>关闭方法热度衰减。在指定时间内方法调用次数达不到即时编译器编译的要求，就会把方法调用次数减半</p>
-<p>-XX:-UseCounterDecay            </p>
-<p>-XX:CounterHalfLifeTime            通过此参数设置半衰期时间，单位秒</p>
-<p>-XX:+PrintCompilation                打印被JIT编译的方法</p>
-<p>System.gc()是否参与GC统计,默认为false.JVM会根据统计数据自适应调整GC参数</p>
-<p>-XX:-UseAdaptiveSizePolicyWithSystemGC</p>
-<p>-agentlib:hprof=cpu=times,interval=10    采样统计各个方法占用cpu时长</p>
-<p>-XX:-UseGCOverheadLimit            提前预测JVM是否OOM</p>
-<h3 id="辅助型，辅助排查"><a href="#辅助型，辅助排查" class="headerlink" title="辅助型，辅助排查"></a>辅助型，辅助排查</h3><blockquote>
-<p>追踪初始化参数</p>
-</blockquote>
-<p>-XX:+PrintCommandLineFlags     打印用户指定的或者JVM根据环境自适应的参数</p>
-<p>-XX:+PrintFlagsFinal             初始化完成后打印参数</p>
-<blockquote>
-<p>GC日志</p>
-</blockquote>
-<p>-XX:+PrintGC</p>
-<p>-XX:+PrintGCDetails</p>
-<p>-XX:+PrintGCDateStamps</p>
-<p>-XX:+PrintHeapAtGC            在GC前后打印出Heap信息</p>
-<p>-Xloggc:f:\gc.log</p>
-<blockquote>
-<p>堆日志</p>
-</blockquote>
-<p>-XX:+HeapDumpOnOutOfMemoryError         OOM时导出堆到文件</p>
-<p>-XX:+HeapDumpPath                         堆导出的位置</p>
-<p>-XX:+OnOutOfMemoryError                 OOM时执行一个脚本</p>
-<blockquote>
-<p>verbose</p>
-</blockquote>
-<p>-verbose:class                打印出加载的class信息</p>
-<p>-verbose:gc                    打印出GC信息</p>
-<p>-verbose:jni                    打印出native方法调用的相关情况</p>
-<h3 id="命令查询"><a href="#命令查询" class="headerlink" title="命令查询"></a>命令查询</h3><p>jinfo -flag MaxTenuringThreshold {pid}        显示晋升阈值是多少，此命令可以查询当前JVM的某个参数</p>
-<h4 id="remarks"><a href="#remarks" class="headerlink" title="remarks:"></a>remarks:</h4><p><em>remark1</em></p>
-<p><a href="http://www.cnblogs.com/redcreen/archive/2011/05/04/2037057.html" target="_blank" rel="noopener">参考</a></p>
-<p><em>remark2</em></p>
-<p>著作权归作者所有。</p>
-<p>商业转载请联系作者获得授权，非商业转载请注明出处。</p>
-<p>作者：匿名用户</p>
-<p>链接：<a href="http://www.zhihu.com/question/21367720/answer/19970887" target="_blank" rel="noopener">http://www.zhihu.com/question/21367720/answer/19970887</a></p>
-<p>来源：知乎</p>
-<p>挖个坑，如果有人赞，我就把某大型网站的jvm启动参数贴上来。谢赞，填坑。</p>
-<p>-server -Xmx2g -Xms2g -Xmn256m </p>
-<p>-XX:PermSize=128m -Xss256k </p>
-<p>-XX:+DisableExplicitGC </p>
-<p>-XX:+UseConcMarkSweepGC </p>
-<p>-XX:+CMSParallelRemarkEnabled </p>
-<p>-XX:+UseCMSCompactAtFullCollection </p>
-<p>-XX:LargePageSizeInBytes=128m </p>
-<p>-XX:+UseFastAccessorMethods </p>
-<p>-XX:+UseCMSInitiatingOccupancyOnly </p>
-<p>-XX:CMSInitiatingOccupancyFraction=70</p>
-<p>-Xmn和-Xmx之比大概是1:9，新生代内存太大会导致young gc时间较长，一个好的Web系统应该是每次http请求申请内存都能在young gc回收掉，full gc永不发生。所以xmn的值应该是保证够用（够http并发请求之用）的前提下最小。</p>
-<p><em>remark3</em></p>
-<p><img src="https://wyc3146.github.io/img/jvm_gc_option.jpg" alt=""></p>
-<p>JDK1.7 update14的GC，有连线代表可以搭配使用</p>
+        <p>​    Jshell是java9新出的基于Java语言的REPL(Read-Eval-Print Loop)命令行工具。它允许不适用类以及main方法就可以执行Java代码，类似于Python、JavaScript等脚本语言。可以说是一个非常好的工具，以后碰到需要测试否个不熟悉的方法或测试某个逻辑，再也不需要新建一个类写一个main方法或测试方法去运行，只要打开jshell输入命令执行就好了。</p>
+<h4 id="一个简单的例子"><a href="#一个简单的例子" class="headerlink" title="一个简单的例子"></a>一个简单的例子</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ jshell</span><br><span class="line">|  Welcome to JShell -- Version 10.0.1</span><br><span class="line">|  For an introduction type: /help intro</span><br><span class="line"></span><br><span class="line"><span class="meta">jshell&gt;</span> System.out.println("Hello World!!!")</span><br><span class="line">Hello World!!!</span><br><span class="line"></span><br><span class="line"><span class="meta">jshell&gt;</span> /exit</span><br><span class="line">|  Goodbye</span><br></pre></td></tr></table></figure>
+<p>在命令行直接输入jshell打开jshell交互界面，输入System.out.println(“Hello World!!!”)即可看到输出结果，最后输入/exit退出。</p>
+<h4 id="变量声明"><a href="#变量声明" class="headerlink" title="变量声明"></a>变量声明</h4><p>当一个表达式最终是返回一个值时，且没有显示指定该值的变量，那么jshell会自动将该对象的引用设置到一个系统生成的变量上，看下面的例子。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">jshell&gt;</span> 1+1</span><br><span class="line"><span class="meta">$</span>3 ==&gt; 2</span><br><span class="line"><span class="meta">jshell&gt;</span> "Hello World!!!".substring(5)</span><br><span class="line"><span class="meta">$</span>4 ==&gt; " World!!!"</span><br></pre></td></tr></table></figure>
+<p>1+1的结果是2，但是我们并没有将结果赋值给一个变量，所以jshell自动将结果值赋值给了他自己声明的变量$3上。继续看下面执行的语句，”Hello World!!!”.substring(5)，其实就是调用了String类的substring()方法。这里就衍生出一个问题，在测试的时候可能连自己都搞不清楚返回的值到底是什么类型的,可能一个不小心以为返回的值是String调用了substring方法，最后报错发现是int类型的。这里推荐进入jshell命令行时加一个参数-v打开详情模式，会在变量赋值后打印变量类型。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ jshell -v</span><br><span class="line">|  Welcome to JShell -- Version 10.0.1</span><br><span class="line">|  For an introduction type: /help intro</span><br><span class="line"></span><br><span class="line"><span class="meta">jshell&gt;</span> "Hello World!!!".substring(5)</span><br><span class="line"><span class="meta">$</span>1 ==&gt; " World!!!"</span><br><span class="line">|  created scratch variable $1 : String</span><br></pre></td></tr></table></figure>
+<h4 id="声明方法"><a href="#声明方法" class="headerlink" title="声明方法"></a>声明方法</h4><p>声明方法也很简单，直接按照java中方法的格式一行一行输进去就可以。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">jshell&gt;</span> String hello(String name) &#123;</span><br><span class="line">   ...&gt; return "Hello " + name;</span><br><span class="line">   ...&gt; &#125;</span><br><span class="line">|  created method hello(String)</span><br><span class="line"></span><br><span class="line"><span class="meta">jshell&gt;</span> hello($1)</span><br><span class="line"><span class="meta">$</span>6 ==&gt; "Hello 5"</span><br><span class="line">|  created scratch variable $6 : String</span><br></pre></td></tr></table></figure>
+<p>想要修改方法声明，用同样的方法前面再输一次即可。</p>
+<h4 id="辅助命令"><a href="#辅助命令" class="headerlink" title="辅助命令"></a>辅助命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">jshell&gt;</span> /vars</span><br><span class="line">|    String $1 = "5"</span><br><span class="line">|    String $6 = "Hello 5"</span><br><span class="line">|    String $8 = "Hi 5"</span><br><span class="line">|    int $10 = 0</span><br><span class="line"></span><br><span class="line"><span class="meta">jshell&gt;</span> /methods</span><br><span class="line">|    String hello(String)</span><br><span class="line">|    int hehe()</span><br><span class="line">|       which cannot be invoked until method what() is declared</span><br><span class="line"></span><br><span class="line"><span class="meta">jshell&gt;</span> /list</span><br><span class="line"></span><br><span class="line">   1 : "Hello World!!!".substring(5)</span><br><span class="line">   2 : $1 = "5"</span><br><span class="line">   3 : $1</span><br><span class="line">   4 : System.out.println($1)</span><br><span class="line">   6 : hello($1)</span><br><span class="line">   7 : String hello(String name) &#123;</span><br><span class="line">       return "Hi " + name;</span><br><span class="line">       &#125;</span><br><span class="line">   8 : hello($1)</span><br><span class="line">   9 : int hehe() &#123;</span><br><span class="line">       what();</span><br><span class="line">       return 1;</span><br><span class="line">       &#125;</span><br><span class="line">  10 : hehe()</span><br></pre></td></tr></table></figure>
+<p>/vars列出当前所有变量，/methods列出当前声明的方法，/list类似于Linux的history列出命令历史<br>可以输入/<tab>来打印所有的辅助命令(没错，jshell支持tab键补全)</tab></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">jshell&gt;</span> /</span><br><span class="line">/!          /?          /drop       /edit       /env        /exit       /help       /history    /imports    /list       </span><br><span class="line">/methods    /open       /reload     /reset      /save       /set        /types      /vars</span><br></pre></td></tr></table></figure>
+<h4 id="执行jshell脚本"><a href="#执行jshell脚本" class="headerlink" title="执行jshell脚本"></a>执行jshell脚本</h4><p>可以通过编写脚本来执行jshell命令，像linux的shell脚本一样，然后通过jshell -s &lt;jshell_file&gt;来执行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jshell --startup test_jshell.jsh</span><br></pre></td></tr></table></figure>
+<p>推荐在脚本最后一行加入/exit，不然脚本执行完后会停留在jshell交互页面。</p>
 
       
     </div>
@@ -487,8 +399,6 @@
           
             <a href="/tags/Java/" rel="tag"># Java</a>
           
-            <a href="/tags/JVM/" rel="tag"># JVM</a>
-          
         </div>
       
 
@@ -500,8 +410,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/18/shell_read_and_create_dir/" rel="next" title="Shell遍历和创建目录">
-                <i class="fa fa-chevron-left"></i> Shell遍历和创建目录
+              <a href="/2018/08/29/copy_on_write_array_list/" rel="next" title="Java并发包 - CopyOnWriteArrayList">
+                <i class="fa fa-chevron-left"></i> Java并发包 - CopyOnWriteArrayList
               </a>
             
           </div>
@@ -509,10 +419,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/09/java_class_init_/" rel="prev" title="Java类加载和个块代码运行时机">
-                Java类加载和个块代码运行时机 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -661,7 +567,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#实用型，会影响运行时环境"><span class="nav-number">1.</span> <span class="nav-text">实用型，会影响运行时环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#辅助型，辅助排查"><span class="nav-number">2.</span> <span class="nav-text">辅助型，辅助排查</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令查询"><span class="nav-number">3.</span> <span class="nav-text">命令查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#remarks"><span class="nav-number">3.1.</span> <span class="nav-text">remarks:</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一个简单的例子"><span class="nav-number">1.</span> <span class="nav-text">一个简单的例子</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#变量声明"><span class="nav-number">2.</span> <span class="nav-text">变量声明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#声明方法"><span class="nav-number">3.</span> <span class="nav-text">声明方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#辅助命令"><span class="nav-number">4.</span> <span class="nav-text">辅助命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#执行jshell脚本"><span class="nav-number">5.</span> <span class="nav-text">执行jshell脚本</span></a></li></ol></div>
             
 
           </div>
@@ -838,9 +744,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2017/03/08/jvm-option/';
-          this.page.identifier = '2017/03/08/jvm-option/';
-          this.page.title = 'JVM常用参数集合';
+          this.page.url = 'http://yoursite.com/2018/09/13/jshell/';
+          this.page.identifier = '2018/09/13/jshell/';
+          this.page.title = 'jshell - Java官方的REPL工具';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://.disqus.com/embed.js';
