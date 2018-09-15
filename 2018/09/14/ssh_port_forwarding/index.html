@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="mysql," />
+  <meta name="keywords" content="Shell,Linux,ssh," />
 
 
 
@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="下面以添加用户test_user、将数据库test_database授权给test_user为例创建分配用户权限。 添加新用户允许指定ip段(192.168.1.0~192.168.1.255)用该用户访问数据库 1create user &amp;apos;test_user&amp;apos;@&amp;apos;192.168.1.%&amp;apos; identified by &amp;apos;123456&amp;apos; @">
-<meta name="keywords" content="mysql">
+<meta name="description" content="​    ssh是secure shell的缩写，是专为远程登录会话和其他网络服务提供安全性的协议。传统的网络服务协议，如ftp、telnet等都是通过明文传输数据，是不安全的。ssh可以把你的传输数据进行加密，并且数据是经过压缩的可以节省流量。 验证方式ssh有两种验证方式，分别是口令验证和密钥验证。  口令验证就是通过账号和口令登录远程机器。  密钥验证是生成一个密钥对，将公钥放到远程服务器上">
+<meta name="keywords" content="Shell,Linux,ssh">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mysql创建用户">
-<meta property="og:url" content="http://yoursite.com/2017/09/29/mysql_create_user/index.html">
+<meta property="og:title" content="ssh端口转发">
+<meta property="og:url" content="http://yoursite.com/2018/09/14/ssh_port_forwarding/index.html">
 <meta property="og:site_name" content="Hogwarts">
-<meta property="og:description" content="下面以添加用户test_user、将数据库test_database授权给test_user为例创建分配用户权限。 添加新用户允许指定ip段(192.168.1.0~192.168.1.255)用该用户访问数据库 1create user &amp;apos;test_user&amp;apos;@&amp;apos;192.168.1.%&amp;apos; identified by &amp;apos;123456&amp;apos; @">
+<meta property="og:description" content="​    ssh是secure shell的缩写，是专为远程登录会话和其他网络服务提供安全性的协议。传统的网络服务协议，如ftp、telnet等都是通过明文传输数据，是不安全的。ssh可以把你的传输数据进行加密，并且数据是经过压缩的可以节省流量。 验证方式ssh有两种验证方式，分别是口令验证和密钥验证。  口令验证就是通过账号和口令登录远程机器。  密钥验证是生成一个密钥对，将公钥放到远程服务器上">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-10T11:15:52.040Z">
+<meta property="og:updated_time" content="2018-09-15T02:56:50.777Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mysql创建用户">
-<meta name="twitter:description" content="下面以添加用户test_user、将数据库test_database授权给test_user为例创建分配用户权限。 添加新用户允许指定ip段(192.168.1.0~192.168.1.255)用该用户访问数据库 1create user &amp;apos;test_user&amp;apos;@&amp;apos;192.168.1.%&amp;apos; identified by &amp;apos;123456&amp;apos; @">
+<meta name="twitter:title" content="ssh端口转发">
+<meta name="twitter:description" content="​    ssh是secure shell的缩写，是专为远程登录会话和其他网络服务提供安全性的协议。传统的网络服务协议，如ftp、telnet等都是通过明文传输数据，是不安全的。ssh可以把你的传输数据进行加密，并且数据是经过压缩的可以节省流量。 验证方式ssh有两种验证方式，分别是口令验证和密钥验证。  口令验证就是通过账号和口令登录远程机器。  密钥验证是生成一个密钥对，将公钥放到远程服务器上">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/09/29/mysql_create_user/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/09/14/ssh_port_forwarding/"/>
 
 
 
 
 
-  <title>mysql创建用户 | Hogwarts</title>
+  <title>ssh端口转发 | Hogwarts</title>
   
 
 
@@ -264,7 +264,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/29/mysql_create_user/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/14/ssh_port_forwarding/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Sirius Black">
@@ -281,7 +281,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">mysql创建用户</h1>
+          <h1 class="post-title" itemprop="name headline">ssh端口转发</h1>
         
 
         <div class="post-meta">
@@ -293,8 +293,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-29T19:12:11+08:00">
-                2017-09-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-14T19:43:23+08:00">
+                2018-09-14
               </time>
             
 
@@ -316,8 +316,19 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">mysql</span>
+                  <a href="/categories/Shell/" itemprop="url" rel="index">
+                    <span itemprop="name">Shell</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Shell/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
                   </a>
                 </span>
 
@@ -334,9 +345,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/09/29/mysql_create_user/#comments" itemprop="discussionUrl">
+                <a href="/2018/09/14/ssh_port_forwarding/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/09/29/mysql_create_user/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/09/14/ssh_port_forwarding/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -364,25 +375,35 @@
       
 
       
-        <p>下面以添加用户test_user、将数据库test_database授权给test_user为例创建分配用户权限。</p>
-<h4 id="添加新用户"><a href="#添加新用户" class="headerlink" title="添加新用户"></a>添加新用户</h4><p>允许指定ip段(192.168.1.0~192.168.1.255)用该用户访问数据库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create user &apos;test_user&apos;@&apos;192.168.1.%&apos; identified by &apos;123456&apos;</span><br></pre></td></tr></table></figure>
-<p>@前面是新建用户的账号，@后面是可以访问到的ip，identified by后面跟该用户的初始密码。</p>
-<p>也可以指定ip或者直接用%来表示允许所有地址访问</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create user &apos;test_user&apos;@&apos;%&apos; identified by &apos;123456&apos;</span><br></pre></td></tr></table></figure>
-<h4 id="分配指定数据库权限"><a href="#分配指定数据库权限" class="headerlink" title="分配指定数据库权限"></a>分配指定数据库权限</h4><p>授予用户通过指定ip访问数据库的权限</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grant all privileges on `test_database`.* to &apos;test_user&apos;@&apos;%&apos; ;</span><br></pre></td></tr></table></figure>
-<p>也可以跳过创建用户步骤，直接用这个命令一起创建用户和分配表权限</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grant all privileges on `test_database`.* to &apos;test_user&apos;@&apos;%&apos; identified by &apos;123456&apos;;</span><br></pre></td></tr></table></figure>
-<h4 id="撤销权限"><a href="#撤销权限" class="headerlink" title="撤销权限"></a>撤销权限</h4><p>撤销指定用户的指定权限</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">revoke all privileges ON `test_database`.* FROM &apos;test_user&apos;@&apos;%&apos;;</span><br></pre></td></tr></table></figure>
-<p>注意只能根据分配的权限去撤销，比如我给test_user用户分配了test_database.*的权限，撤销的时候不能只撤销这个库的某张表，只能全部撤销。</p>
-<h4 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set password for &apos;user_test&apos;@&apos;%&apos; = PASSWORD(&apos;newpassword&apos;);</span><br></pre></td></tr></table></figure>
-<h4 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop user &apos;user_test&apos;@&apos;%&apos;;</span><br></pre></td></tr></table></figure>
-<h4 id="刷新权限配置"><a href="#刷新权限配置" class="headerlink" title="刷新权限配置"></a>刷新权限配置</h4><p>注意，以上这些操作都需要通过刷新命令刷新进数据库缓存才能正式生效。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flush privileges ;</span><br></pre></td></tr></table></figure>
-<h4 id="⚠️注意事项"><a href="#⚠️注意事项" class="headerlink" title="⚠️注意事项"></a>⚠️注意事项</h4><p>我在配置用户及权限的时候碰到一个问题，新增的用户如果加密码登录总是提示Access denied，但是所有用户都可以免密登录。最后发现是因为mysql.user表中有一条‘‘@’localhost’记录引起的，一些版本的mysql安装默认会有该用户，手动删除即可。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop user &apos;&apos;@&apos;localhost&apos;</span><br></pre></td></tr></table></figure>
+        <p>​    ssh是secure shell的缩写，是专为远程登录会话和其他网络服务提供安全性的协议。传统的网络服务协议，如ftp、telnet等都是通过明文传输数据，是不安全的。ssh可以把你的传输数据进行加密，并且数据是经过压缩的可以节省流量。</p>
+<h4 id="验证方式"><a href="#验证方式" class="headerlink" title="验证方式"></a>验证方式</h4><p>ssh有两种验证方式，分别是口令验证和密钥验证。</p>
+<ul>
+<li><p>口令验证就是通过账号和口令登录远程机器。</p>
+</li>
+<li><p>密钥验证是生成一个密钥对，将公钥放到远程服务器上，把私钥放在自己本地机器上。登录的时候远程主机会发来一串随机字符串，本地用私钥加密发回去，如果远程主机用公钥解密成功则认为这个用户合法，直接就可以登录成功。</p>
+</li>
+</ul>
+<h4 id="最简单的用法"><a href="#最简单的用法" class="headerlink" title="最简单的用法"></a>最简单的用法</h4><p>ssh <user>@<host></host></user></p>
+<p>user是想要登录远程主机的用户名，host是远程主机的地址，ssh默认使用的端口是22，如果想要指定端口可以用-p <port>来指定，建议远程服务器修改一下ssh端口防止被攻击。下面是一个示例</port></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@88.88.88.88</span><br></pre></td></tr></table></figure>
+<p>连接远程机器88.88.88.88，并用root用户登录。</p>
+<h4 id="远程执行命令"><a href="#远程执行命令" class="headerlink" title="远程执行命令"></a>远程执行命令</h4><p>ssh可以登录到指定主机，然后执行命令。也可以在ssh命令后跟想要执行的命令，这样命令执行结束后就会直接退出登录。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@88.88.88.88 'jps'</span><br></pre></td></tr></table></figure>
+<p>查看88.88.88.88这台机器用root用户运行的java程序。</p>
+<h4 id="本地端口转发"><a href="#本地端口转发" class="headerlink" title="本地端口转发"></a>本地端口转发</h4><p>可以通过ssh绑定本地端口，将本地某个端口转发到远程主机的指定端口，如远程主机有一个http服务监听了8080端口，但是8080端口并不对公网开放，那么就可以用ssh转发来达到本地访问效果。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -L 2121:127.0.0.1:8080 root@88.88.88.88 -p 4477</span><br></pre></td></tr></table></figure>
+<p>这样就ssh就会监听本地2121端口，所以对本地2121端口的访问都会被转发到远程机器的8080端口上，当然也可以将127.0.0.1改成别的远程机器能访问到的ip。这里的-p是指定远程机器的ssh服务端口，我这边设置的是4477。</p>
+<h4 id="远程端口转发"><a href="#远程端口转发" class="headerlink" title="远程端口转发"></a>远程端口转发</h4><p>本地执行ssh命令，可以指定让远程机器监听一个端口，所有对这个端口的访问都转发到本地，从而实现内网穿透。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -R 7777:10.0.0.5:7000 root@88.88.88.88 -p 4477</span><br></pre></td></tr></table></figure>
+<p>本地通过ssh连向远程机器，并让远程机器监听7777端口，所有对这个端口的访问都转发到本地机器。即对远程机器7777端口的访问和在本地访问10.0.0.5:7000地址效果是一样的。</p>
+<p>这边我转发的是一个web服务，转发成功后在浏览器打开88.88.88.88:7777并不能正常打开，登录远程机器查看监听状态发现监听的是127.0.0.1的7777端口。这和sshd的安全机制有关，默认sshd只会转发127.0.0.1这个地址的端口，我们要实现转发所有ip可以在远程机器进行以下配置。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/ssh/sshd_config</span><br><span class="line"><span class="meta">#</span> 将GatewayPorts配置成yes</span><br><span class="line">service sshd restart</span><br></pre></td></tr></table></figure>
+<p>再重新按照之前的步骤转发下远程端口，访问成功。</p>
+<h4 id="转入后台运行"><a href="#转入后台运行" class="headerlink" title="转入后台运行"></a>转入后台运行</h4><p>前面的端口转发命令，当执行成功后就会进入远程的shell操作页面，当exit的时候，ssh连接也会断开。我们可以通过-N参数不让他进入远程sheel操作页面。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -NR 7777:10.0.0.5:7000 root@88.88.88.88 -p4477</span><br></pre></td></tr></table></figure>
+<p>这样还不够，我们希望能在后台运行，而不用一只维持一个打开的窗口。可以用-f参数指定。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -fNR 7777:10.0.0.5:7000 root@88.88.88.88 -p4477</span><br></pre></td></tr></table></figure>
+<p>这样就可以操作本地shell或者关闭当前shell，后台运行的端口转发通道还是开着的。想要关闭可以用kill命令把进程杀死。</p>
 
       
     </div>
@@ -400,7 +421,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/mysql/" rel="tag"># mysql</a>
+            <a href="/tags/Shell/" rel="tag"># Shell</a>
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+            <a href="/tags/ssh/" rel="tag"># ssh</a>
           
         </div>
       
@@ -413,8 +438,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/09/java_class_init_/" rel="next" title="Java类加载和个块代码运行时机">
-                <i class="fa fa-chevron-left"></i> Java类加载和个块代码运行时机
+              <a href="/2018/09/13/jshell/" rel="next" title="jshell - Java官方的REPL工具">
+                <i class="fa fa-chevron-left"></i> jshell - Java官方的REPL工具
               </a>
             
           </div>
@@ -422,10 +447,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/02/12/bitwise_operation_in_java/" rel="prev" title="Java中的位运算">
-                Java中的位运算 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -574,7 +595,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#添加新用户"><span class="nav-number">1.</span> <span class="nav-text">添加新用户</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分配指定数据库权限"><span class="nav-number">2.</span> <span class="nav-text">分配指定数据库权限</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#撤销权限"><span class="nav-number">3.</span> <span class="nav-text">撤销权限</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改密码"><span class="nav-number">4.</span> <span class="nav-text">修改密码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除用户"><span class="nav-number">5.</span> <span class="nav-text">删除用户</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#刷新权限配置"><span class="nav-number">6.</span> <span class="nav-text">刷新权限配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#⚠️注意事项"><span class="nav-number">7.</span> <span class="nav-text">⚠️注意事项</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#验证方式"><span class="nav-number">1.</span> <span class="nav-text">验证方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最简单的用法"><span class="nav-number">2.</span> <span class="nav-text">最简单的用法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#远程执行命令"><span class="nav-number">3.</span> <span class="nav-text">远程执行命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#本地端口转发"><span class="nav-number">4.</span> <span class="nav-text">本地端口转发</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#远程端口转发"><span class="nav-number">5.</span> <span class="nav-text">远程端口转发</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#转入后台运行"><span class="nav-number">6.</span> <span class="nav-text">转入后台运行</span></a></li></ol></div>
             
 
           </div>
@@ -751,9 +772,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2017/09/29/mysql_create_user/';
-          this.page.identifier = '2017/09/29/mysql_create_user/';
-          this.page.title = 'mysql创建用户';
+          this.page.url = 'http://yoursite.com/2018/09/14/ssh_port_forwarding/';
+          this.page.identifier = '2018/09/14/ssh_port_forwarding/';
+          this.page.title = 'ssh端口转发';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://.disqus.com/embed.js';

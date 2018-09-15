@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-09-14T07:21:03.765Z</updated>
+  <updated>2018-09-15T02:56:50.777Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ssh端口转发</title>
+    <link href="http://yoursite.com/2018/09/14/ssh_port_forwarding/"/>
+    <id>http://yoursite.com/2018/09/14/ssh_port_forwarding/</id>
+    <published>2018-09-14T11:43:23.000Z</published>
+    <updated>2018-09-15T02:56:50.777Z</updated>
+    
+    <content type="html"><![CDATA[<p>​    ssh是secure shell的缩写，是专为远程登录会话和其他网络服务提供安全性的协议。传统的网络服务协议，如ftp、telnet等都是通过明文传输数据，是不安全的。ssh可以把你的传输数据进行加密，并且数据是经过压缩的可以节省流量。</p><h4 id="验证方式"><a href="#验证方式" class="headerlink" title="验证方式"></a>验证方式</h4><p>ssh有两种验证方式，分别是口令验证和密钥验证。</p><ul><li><p>口令验证就是通过账号和口令登录远程机器。</p></li><li><p>密钥验证是生成一个密钥对，将公钥放到远程服务器上，把私钥放在自己本地机器上。登录的时候远程主机会发来一串随机字符串，本地用私钥加密发回去，如果远程主机用公钥解密成功则认为这个用户合法，直接就可以登录成功。</p></li></ul><h4 id="最简单的用法"><a href="#最简单的用法" class="headerlink" title="最简单的用法"></a>最简单的用法</h4><p>ssh <user>@<host></host></user></p><p>user是想要登录远程主机的用户名，host是远程主机的地址，ssh默认使用的端口是22，如果想要指定端口可以用-p <port>来指定，建议远程服务器修改一下ssh端口防止被攻击。下面是一个示例</port></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@88.88.88.88</span><br></pre></td></tr></table></figure><p>连接远程机器88.88.88.88，并用root用户登录。</p><h4 id="远程执行命令"><a href="#远程执行命令" class="headerlink" title="远程执行命令"></a>远程执行命令</h4><p>ssh可以登录到指定主机，然后执行命令。也可以在ssh命令后跟想要执行的命令，这样命令执行结束后就会直接退出登录。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@88.88.88.88 'jps'</span><br></pre></td></tr></table></figure><p>查看88.88.88.88这台机器用root用户运行的java程序。</p><h4 id="本地端口转发"><a href="#本地端口转发" class="headerlink" title="本地端口转发"></a>本地端口转发</h4><p>可以通过ssh绑定本地端口，将本地某个端口转发到远程主机的指定端口，如远程主机有一个http服务监听了8080端口，但是8080端口并不对公网开放，那么就可以用ssh转发来达到本地访问效果。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -L 2121:127.0.0.1:8080 root@88.88.88.88 -p 4477</span><br></pre></td></tr></table></figure><p>这样就ssh就会监听本地2121端口，所以对本地2121端口的访问都会被转发到远程机器的8080端口上，当然也可以将127.0.0.1改成别的远程机器能访问到的ip。这里的-p是指定远程机器的ssh服务端口，我这边设置的是4477。</p><h4 id="远程端口转发"><a href="#远程端口转发" class="headerlink" title="远程端口转发"></a>远程端口转发</h4><p>本地执行ssh命令，可以指定让远程机器监听一个端口，所有对这个端口的访问都转发到本地，从而实现内网穿透。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -R 7777:10.0.0.5:7000 root@88.88.88.88 -p 4477</span><br></pre></td></tr></table></figure><p>本地通过ssh连向远程机器，并让远程机器监听7777端口，所有对这个端口的访问都转发到本地机器。即对远程机器7777端口的访问和在本地访问10.0.0.5:7000地址效果是一样的。</p><p>这边我转发的是一个web服务，转发成功后在浏览器打开88.88.88.88:7777并不能正常打开，登录远程机器查看监听状态发现监听的是127.0.0.1的7777端口。这和sshd的安全机制有关，默认sshd只会转发127.0.0.1这个地址的端口，我们要实现转发所有ip可以在远程机器进行以下配置。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/ssh/sshd_config</span><br><span class="line"><span class="meta">#</span> 将GatewayPorts配置成yes</span><br><span class="line">service sshd restart</span><br></pre></td></tr></table></figure><p>再重新按照之前的步骤转发下远程端口，访问成功。</p><h4 id="转入后台运行"><a href="#转入后台运行" class="headerlink" title="转入后台运行"></a>转入后台运行</h4><p>前面的端口转发命令，当执行成功后就会进入远程的shell操作页面，当exit的时候，ssh连接也会断开。我们可以通过-N参数不让他进入远程sheel操作页面。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -NR 7777:10.0.0.5:7000 root@88.88.88.88 -p4477</span><br></pre></td></tr></table></figure><p>这样还不够，我们希望能在后台运行，而不用一只维持一个打开的窗口。可以用-f参数指定。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -fNR 7777:10.0.0.5:7000 root@88.88.88.88 -p4477</span><br></pre></td></tr></table></figure><p>这样就可以操作本地shell或者关闭当前shell，后台运行的端口转发通道还是开着的。想要关闭可以用kill命令把进程杀死。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;​    ssh是secure shell的缩写，是专为远程登录会话和其他网络服务提供安全性的协议。传统的网络服务协议，如ftp、telnet等都是通过明文传输数据，是不安全的。ssh可以把你的传输数据进行加密，并且数据是经过压缩的可以节省流量。&lt;/p&gt;
+&lt;h4 id=&quot;验
+      
+    
+    </summary>
+    
+      <category term="Shell" scheme="http://yoursite.com/categories/Shell/"/>
+    
+      <category term="Linux" scheme="http://yoursite.com/categories/Shell/Linux/"/>
+    
+    
+      <category term="Shell" scheme="http://yoursite.com/tags/Shell/"/>
+    
+      <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
+    
+      <category term="ssh" scheme="http://yoursite.com/tags/ssh/"/>
+    
+  </entry>
   
   <entry>
     <title>jshell - Java官方的REPL工具</title>
@@ -98,6 +130,32 @@
   </entry>
   
   <entry>
+    <title>JDK SPI实现原理</title>
+    <link href="http://yoursite.com/2018/05/27/jdk_spi/"/>
+    <id>http://yoursite.com/2018/05/27/jdk_spi/</id>
+    <published>2018-05-27T11:05:00.000Z</published>
+    <updated>2018-08-29T09:57:15.471Z</updated>
+    
+    <content type="html"><![CDATA[<p>SPI全称Service Provider Interface，是JDK官方提供的一种服务发现(look up)机制。</p><p>一般分为接口提供方和接口实现方，权威方提供接口标准（如JDBC标准，是由JDK提供的用于数据库连接的标准接口），接口实现方提供具体实现（如针对JDBC的mysql实现是由mysql官方提供的）。</p><p>下面我们通过mysql的实现来了解一下SPI具体是怎么工作的。</p><p>mysql-connector-java的jar包中，有META-INF/services/java.sql.Driver文件，内容如下</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">com.mysql.jdbc.Driver</span><br><span class="line">com.mysql.fabric.jdbc.FabricMySQLDriver</span><br></pre></td></tr></table></figure><p>SPI约定提供方需要在META-INF/services/目录下创建以接口名(包括接口路径的全限定名)命名的文件，文件内容是这个接口的具体实现。</p><p>由此说明mysql-connector-java提供了java.sql.Driver的实现，并且提供了两个实现。</p><p>那JDK具体是通过什么方式来读取这个文件并加载具体实现类的呢？不着急找答案，我们先看看mysql包是怎么使用的。用mysql客户端获取一个连接的标准代码如下：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Connection connection = DriverManager.getConnection(<span class="string">"jdbc:mysql://127.0.0.1:3306/wukong"</span>, username, password);</span><br></pre></td></tr></table></figure><p>DriverManager是JDK提供的一个支持类，因为不同版本实现有略微区别，逻辑还是相似的，我们以jdk10.0.1的代码为例分析。</p><p>getConnection()方法内部调用了<em>ensureDriversInitialized()</em>方法，这个方法职责就是用ServiceLoader加载所有的java.sql.Driver接口实现，最核心的代码就是下面几句</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">AccessController.doPrivileged(<span class="keyword">new</span> PrivilegedAction&lt;Void&gt;() &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Void <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ServiceLoader&lt;Driver&gt; loadedDrivers = ServiceLoader.load(Driver.class);</span><br><span class="line">        Iterator&lt;Driver&gt; driversIterator = loadedDrivers.iterator();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">while</span> (driversIterator.hasNext()) &#123;</span><br><span class="line">                driversIterator.next();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Throwable t) &#123;</span><br><span class="line">            <span class="comment">// Do nothing</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>通过ServiceLoader来指定具体的SPI接口并得到一个Iterator对象，在迭代这个迭代器的时候会去找指定路径的文件(这里就是META-INF/services/java.sql.Driver)，并给指定的实现创建对象。DriverManager约定将所有的驱动存在<em>registeredDrivers</em>对象里，mysql的做法是在com.mysql.jdbc.Driver里面加一个静态块初始化一个自身对象并把对象注册到DriverManager.registeredDrivers中。所以mysql这种实现方式com.mysql.jdbc.Driver类其实被实例化了两次，第一次在类初始化的时候执行的静态块中，这个对象是最终使用的对象；第二次实例化是ServiceLoader迭代器调用next()时会通过反射实例化一次对象，这个对象直接被DriverManager扔掉了。静态块向DriverManager注册的代码如下：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> &#123;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">java.sql.DriverManager.registerDriver(<span class="keyword">new</span> Driver());</span><br><span class="line">&#125; <span class="keyword">catch</span> (SQLException E) &#123;</span><br><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"Can't register driver!"</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>我们平时用mysql一般都只用com.mysql.jdbc.Driver类的实例化对象来操作，而META-INF/services/java.sql.Driver文件中声明了两个类实现，根据ServiceLoader类的加载规则，就算我们不使用com.mysql.fabric.jdbc.FabricMysqlDriver类实现，ServiceLoader也会帮我们实例化这个对象。而且在DriverManager根据指定url获取数据库连接时，DriverManager时遍历所有已注册的驱动依次尝试获取连接，直到拿到可用连接才会返回，代码如下：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(DriverInfo aDriver : registeredDrivers) &#123;</span><br><span class="line">    <span class="comment">// If the caller does not have permission to load the driver then</span></span><br><span class="line">    <span class="comment">// skip it.</span></span><br><span class="line">    <span class="keyword">if</span>(isDriverAllowed(aDriver.driver, callerCL)) &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            println(<span class="string">"    trying "</span> + aDriver.driver.getClass().getName());</span><br><span class="line">            Connection con = aDriver.driver.connect(url, info);</span><br><span class="line">            <span class="keyword">if</span> (con != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="comment">// Success!</span></span><br><span class="line">                println(<span class="string">"getConnection returning "</span> + aDriver.driver.getClass().getName());</span><br><span class="line">                <span class="keyword">return</span> (con);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SQLException ex) &#123;</span><br><span class="line">            <span class="keyword">if</span> (reason == <span class="keyword">null</span>) &#123;</span><br><span class="line">                reason = ex;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        println(<span class="string">"    skipping: "</span> + aDriver.getClass().getName());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>这其实是一种资源浪费，内存中无缘无故多了一个com.mysql.fabric.jdbc.FabricMYSQLDriver类对象，而且不能被回收，获取Connection时也要根据具体的url依次判断每个Driver是否能根据此url来获取连接，效率并不是很高。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;SPI全称Service Provider Interface，是JDK官方提供的一种服务发现(look up)机制。&lt;/p&gt;
+&lt;p&gt;一般分为接口提供方和接口实现方，权威方提供接口标准（如JDBC标准，是由JDK提供的用于数据库连接的标准接口），接口实现方提供具体实现（如针
+      
+    
+    </summary>
+    
+      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
     <title>spring scheme扩展</title>
     <link href="http://yoursite.com/2018/05/27/spring_custom_schema/"/>
     <id>http://yoursite.com/2018/05/27/spring_custom_schema/</id>
@@ -122,32 +180,6 @@
       <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
     
       <category term="Spring" scheme="http://yoursite.com/tags/Spring/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JDK SPI实现原理</title>
-    <link href="http://yoursite.com/2018/05/27/jdk_spi/"/>
-    <id>http://yoursite.com/2018/05/27/jdk_spi/</id>
-    <published>2018-05-27T11:05:00.000Z</published>
-    <updated>2018-08-29T09:57:15.471Z</updated>
-    
-    <content type="html"><![CDATA[<p>SPI全称Service Provider Interface，是JDK官方提供的一种服务发现(look up)机制。</p><p>一般分为接口提供方和接口实现方，权威方提供接口标准（如JDBC标准，是由JDK提供的用于数据库连接的标准接口），接口实现方提供具体实现（如针对JDBC的mysql实现是由mysql官方提供的）。</p><p>下面我们通过mysql的实现来了解一下SPI具体是怎么工作的。</p><p>mysql-connector-java的jar包中，有META-INF/services/java.sql.Driver文件，内容如下</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">com.mysql.jdbc.Driver</span><br><span class="line">com.mysql.fabric.jdbc.FabricMySQLDriver</span><br></pre></td></tr></table></figure><p>SPI约定提供方需要在META-INF/services/目录下创建以接口名(包括接口路径的全限定名)命名的文件，文件内容是这个接口的具体实现。</p><p>由此说明mysql-connector-java提供了java.sql.Driver的实现，并且提供了两个实现。</p><p>那JDK具体是通过什么方式来读取这个文件并加载具体实现类的呢？不着急找答案，我们先看看mysql包是怎么使用的。用mysql客户端获取一个连接的标准代码如下：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Connection connection = DriverManager.getConnection(<span class="string">"jdbc:mysql://127.0.0.1:3306/wukong"</span>, username, password);</span><br></pre></td></tr></table></figure><p>DriverManager是JDK提供的一个支持类，因为不同版本实现有略微区别，逻辑还是相似的，我们以jdk10.0.1的代码为例分析。</p><p>getConnection()方法内部调用了<em>ensureDriversInitialized()</em>方法，这个方法职责就是用ServiceLoader加载所有的java.sql.Driver接口实现，最核心的代码就是下面几句</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">AccessController.doPrivileged(<span class="keyword">new</span> PrivilegedAction&lt;Void&gt;() &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Void <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ServiceLoader&lt;Driver&gt; loadedDrivers = ServiceLoader.load(Driver.class);</span><br><span class="line">        Iterator&lt;Driver&gt; driversIterator = loadedDrivers.iterator();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">while</span> (driversIterator.hasNext()) &#123;</span><br><span class="line">                driversIterator.next();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Throwable t) &#123;</span><br><span class="line">            <span class="comment">// Do nothing</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>通过ServiceLoader来指定具体的SPI接口并得到一个Iterator对象，在迭代这个迭代器的时候会去找指定路径的文件(这里就是META-INF/services/java.sql.Driver)，并给指定的实现创建对象。DriverManager约定将所有的驱动存在<em>registeredDrivers</em>对象里，mysql的做法是在com.mysql.jdbc.Driver里面加一个静态块初始化一个自身对象并把对象注册到DriverManager.registeredDrivers中。所以mysql这种实现方式com.mysql.jdbc.Driver类其实被实例化了两次，第一次在类初始化的时候执行的静态块中，这个对象是最终使用的对象；第二次实例化是ServiceLoader迭代器调用next()时会通过反射实例化一次对象，这个对象直接被DriverManager扔掉了。静态块向DriverManager注册的代码如下：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> &#123;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">java.sql.DriverManager.registerDriver(<span class="keyword">new</span> Driver());</span><br><span class="line">&#125; <span class="keyword">catch</span> (SQLException E) &#123;</span><br><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"Can't register driver!"</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>我们平时用mysql一般都只用com.mysql.jdbc.Driver类的实例化对象来操作，而META-INF/services/java.sql.Driver文件中声明了两个类实现，根据ServiceLoader类的加载规则，就算我们不使用com.mysql.fabric.jdbc.FabricMysqlDriver类实现，ServiceLoader也会帮我们实例化这个对象。而且在DriverManager根据指定url获取数据库连接时，DriverManager时遍历所有已注册的驱动依次尝试获取连接，直到拿到可用连接才会返回，代码如下：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(DriverInfo aDriver : registeredDrivers) &#123;</span><br><span class="line">    <span class="comment">// If the caller does not have permission to load the driver then</span></span><br><span class="line">    <span class="comment">// skip it.</span></span><br><span class="line">    <span class="keyword">if</span>(isDriverAllowed(aDriver.driver, callerCL)) &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            println(<span class="string">"    trying "</span> + aDriver.driver.getClass().getName());</span><br><span class="line">            Connection con = aDriver.driver.connect(url, info);</span><br><span class="line">            <span class="keyword">if</span> (con != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="comment">// Success!</span></span><br><span class="line">                println(<span class="string">"getConnection returning "</span> + aDriver.driver.getClass().getName());</span><br><span class="line">                <span class="keyword">return</span> (con);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SQLException ex) &#123;</span><br><span class="line">            <span class="keyword">if</span> (reason == <span class="keyword">null</span>) &#123;</span><br><span class="line">                reason = ex;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        println(<span class="string">"    skipping: "</span> + aDriver.getClass().getName());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>这其实是一种资源浪费，内存中无缘无故多了一个com.mysql.fabric.jdbc.FabricMYSQLDriver类对象，而且不能被回收，获取Connection时也要根据具体的url依次判断每个Driver是否能根据此url来获取连接，效率并不是很高。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;SPI全称Service Provider Interface，是JDK官方提供的一种服务发现(look up)机制。&lt;/p&gt;
-&lt;p&gt;一般分为接口提供方和接口实现方，权威方提供接口标准（如JDBC标准，是由JDK提供的用于数据库连接的标准接口），接口实现方提供具体实现（如针
-      
-    
-    </summary>
-    
-      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
-    
-    
-      <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
     
   </entry>
   
