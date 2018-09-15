@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-09-15T02:59:48.209Z</updated>
+  <updated>2018-09-15T03:01:34.477Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,16 +21,16 @@
     <link href="http://yoursite.com/2018/09/14/ssh_port_forwarding/"/>
     <id>http://yoursite.com/2018/09/14/ssh_port_forwarding/</id>
     <published>2018-09-14T11:43:23.000Z</published>
-    <updated>2018-09-15T02:59:48.209Z</updated>
+    <updated>2018-09-15T03:01:34.477Z</updated>
     
-    <content type="html"><![CDATA[<p>​    ssh是secure shell的缩写，是专为远程登录会话和其他网络服务提供安全性的协议。传统的网络服务协议，如ftp、telnet等都是通过明文传输数据，是不安全的。ssh可以把你的传输数据进行加密，并且数据是经过压缩的可以节省流量。</p><h4 id="验证方式"><a href="#验证方式" class="headerlink" title="验证方式"></a>验证方式</h4><p>ssh有两种验证方式，分别是口令验证和密钥验证。</p><ul><li><p>口令验证就是通过账号和口令登录远程机器。</p></li><li><p>密钥验证是生成一个密钥对，将公钥放到远程服务器上，把私钥放在自己本地机器上。登录的时候远程主机会发来一串随机字符串，本地用私钥加密发回去，如果远程主机用公钥解密成功则认为这个用户合法，直接就可以登录成功。</p></li></ul><h4 id="最简单的用法"><a href="#最简单的用法" class="headerlink" title="最简单的用法"></a>最简单的用法</h4><p>ssh \&lt;user>@\&lt;host></p><p>user是想要登录远程主机的用户名，host是远程主机的地址，ssh默认使用的端口是22，如果想要指定端口可以用-p \&lt;port>来指定，建议远程服务器修改一下ssh端口防止被攻击。下面是一个示例</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@88.88.88.88</span><br></pre></td></tr></table></figure><p>连接远程机器88.88.88.88，并用root用户登录。</p><h4 id="远程执行命令"><a href="#远程执行命令" class="headerlink" title="远程执行命令"></a>远程执行命令</h4><p>ssh可以登录到指定主机，然后执行命令。也可以在ssh命令后跟想要执行的命令，这样命令执行结束后就会直接退出登录。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@88.88.88.88 'jps'</span><br></pre></td></tr></table></figure><p>查看88.88.88.88这台机器用root用户运行的java程序。</p><h4 id="本地端口转发"><a href="#本地端口转发" class="headerlink" title="本地端口转发"></a>本地端口转发</h4><p>可以通过ssh绑定本地端口，将本地某个端口转发到远程主机的指定端口，如远程主机有一个http服务监听了8080端口，但是8080端口并不对公网开放，那么就可以用ssh转发来达到本地访问效果。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -L 2121:127.0.0.1:8080 root@88.88.88.88 -p 4477</span><br></pre></td></tr></table></figure><p>这样就ssh就会监听本地2121端口，所以对本地2121端口的访问都会被转发到远程机器的8080端口上，当然也可以将127.0.0.1改成别的远程机器能访问到的ip。这里的-p是指定远程机器的ssh服务端口，我这边设置的是4477。</p><h4 id="远程端口转发"><a href="#远程端口转发" class="headerlink" title="远程端口转发"></a>远程端口转发</h4><p>本地执行ssh命令，可以指定让远程机器监听一个端口，所有对这个端口的访问都转发到本地，从而实现内网穿透。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -R 7777:10.0.0.5:7000 root@88.88.88.88 -p 4477</span><br></pre></td></tr></table></figure><p>本地通过ssh连向远程机器，并让远程机器监听7777端口，所有对这个端口的访问都转发到本地机器。即对远程机器7777端口的访问和在本地访问10.0.0.5:7000地址效果是一样的。</p><p>这边我转发的是一个web服务，转发成功后在浏览器打开88.88.88.88:7777并不能正常打开，登录远程机器查看监听状态发现监听的是127.0.0.1的7777端口。这和sshd的安全机制有关，默认sshd只会转发127.0.0.1这个地址的端口，我们要实现转发所有ip可以在远程机器进行以下配置。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/ssh/sshd_config</span><br><span class="line"><span class="meta">#</span> 将GatewayPorts配置成yes</span><br><span class="line">service sshd restart</span><br></pre></td></tr></table></figure><p>再重新按照之前的步骤转发下远程端口，访问成功。</p><h4 id="转入后台运行"><a href="#转入后台运行" class="headerlink" title="转入后台运行"></a>转入后台运行</h4><p>前面的端口转发命令，当执行成功后就会进入远程的shell操作页面，当exit的时候，ssh连接也会断开。我们可以通过-N参数不让他进入远程sheel操作页面。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -NR 7777:10.0.0.5:7000 root@88.88.88.88 -p4477</span><br></pre></td></tr></table></figure><p>这样还不够，我们希望能在后台运行，而不用一只维持一个打开的窗口。可以用-f参数指定。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -fNR 7777:10.0.0.5:7000 root@88.88.88.88 -p4477</span><br></pre></td></tr></table></figure><p>这样就可以操作本地shell或者关闭当前shell，后台运行的端口转发通道还是开着的。想要关闭可以用kill命令把进程杀死。</p>]]></content>
+    <content type="html"><![CDATA[<pre><code>ssh是secure shell的缩写，是专为远程登录会话和其他网络服务提供安全性的协议。传统的网络服务协议，如ftp、telnet等都是通过明文传输数据，是不安全的。ssh可以把你的传输数据进行加密，并且数据是经过压缩的可以节省流量。</code></pre><h3 id="验证方式"><a href="#验证方式" class="headerlink" title="验证方式"></a>验证方式</h3><p>ssh有两种验证方式，分别是口令验证和密钥验证。</p><ul><li><p>口令验证就是通过账号和口令登录远程机器。</p></li><li><p>密钥验证是生成一个密钥对，将公钥放到远程服务器上，把私钥放在自己本地机器上。登录的时候远程主机会发来一串随机字符串，本地用私钥加密发回去，如果远程主机用公钥解密成功则认为这个用户合法，直接就可以登录成功。</p></li></ul><h3 id="最简单的用法"><a href="#最简单的用法" class="headerlink" title="最简单的用法"></a>最简单的用法</h3><p>ssh \&lt;user>@\&lt;host></p><p>user是想要登录远程主机的用户名，host是远程主机的地址，ssh默认使用的端口是22，如果想要指定端口可以用-p \&lt;port>来指定，建议远程服务器修改一下ssh端口防止被攻击。下面是一个示例</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@88.88.88.88</span><br></pre></td></tr></table></figure><p>连接远程机器88.88.88.88，并用root用户登录。</p><h3 id="远程执行命令"><a href="#远程执行命令" class="headerlink" title="远程执行命令"></a>远程执行命令</h3><p>ssh可以登录到指定主机，然后执行命令。也可以在ssh命令后跟想要执行的命令，这样命令执行结束后就会直接退出登录。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@88.88.88.88 'jps'</span><br></pre></td></tr></table></figure><p>查看88.88.88.88这台机器用root用户运行的java程序。</p><h3 id="本地端口转发"><a href="#本地端口转发" class="headerlink" title="本地端口转发"></a>本地端口转发</h3><p>可以通过ssh绑定本地端口，将本地某个端口转发到远程主机的指定端口，如远程主机有一个http服务监听了8080端口，但是8080端口并不对公网开放，那么就可以用ssh转发来达到本地访问效果。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -L 2121:127.0.0.1:8080 root@88.88.88.88 -p 4477</span><br></pre></td></tr></table></figure><p>这样就ssh就会监听本地2121端口，所以对本地2121端口的访问都会被转发到远程机器的8080端口上，当然也可以将127.0.0.1改成别的远程机器能访问到的ip。这里的-p是指定远程机器的ssh服务端口，我这边设置的是4477。</p><h3 id="远程端口转发"><a href="#远程端口转发" class="headerlink" title="远程端口转发"></a>远程端口转发</h3><p>本地执行ssh命令，可以指定让远程机器监听一个端口，所有对这个端口的访问都转发到本地，从而实现内网穿透。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -R 7777:10.0.0.5:7000 root@88.88.88.88 -p 4477</span><br></pre></td></tr></table></figure><p>本地通过ssh连向远程机器，并让远程机器监听7777端口，所有对这个端口的访问都转发到本地机器。即对远程机器7777端口的访问和在本地访问10.0.0.5:7000地址效果是一样的。</p><p>这边我转发的是一个web服务，转发成功后在浏览器打开88.88.88.88:7777并不能正常打开，登录远程机器查看监听状态发现监听的是127.0.0.1的7777端口。这和sshd的安全机制有关，默认sshd只会转发127.0.0.1这个地址的端口，我们要实现转发所有ip可以在远程机器进行以下配置。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/ssh/sshd_config</span><br><span class="line"><span class="meta">#</span> 将GatewayPorts配置成yes</span><br><span class="line">service sshd restart</span><br></pre></td></tr></table></figure><p>再重新按照之前的步骤转发下远程端口，访问成功。</p><h3 id="转入后台运行"><a href="#转入后台运行" class="headerlink" title="转入后台运行"></a>转入后台运行</h3><p>前面的端口转发命令，当执行成功后就会进入远程的shell操作页面，当exit的时候，ssh连接也会断开。我们可以通过-N参数不让他进入远程sheel操作页面。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -NR 7777:10.0.0.5:7000 root@88.88.88.88 -p4477</span><br></pre></td></tr></table></figure><p>这样还不够，我们希望能在后台运行，而不用一只维持一个打开的窗口。可以用-f参数指定。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -fNR 7777:10.0.0.5:7000 root@88.88.88.88 -p4477</span><br></pre></td></tr></table></figure><p>这样就可以操作本地shell或者关闭当前shell，后台运行的端口转发通道还是开着的。想要关闭可以用kill命令把进程杀死。</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;​    ssh是secure shell的缩写，是专为远程登录会话和其他网络服务提供安全性的协议。传统的网络服务协议，如ftp、telnet等都是通过明文传输数据，是不安全的。ssh可以把你的传输数据进行加密，并且数据是经过压缩的可以节省流量。&lt;/p&gt;
-&lt;h4 id=&quot;验
+        &lt;pre&gt;&lt;code&gt;ssh是secure shell的缩写，是专为远程登录会话和其他网络服务提供安全性的协议。传统的网络服务协议，如ftp、telnet等都是通过明文传输数据，是不安全的。ssh可以把你的传输数据进行加密，并且数据是经过压缩的可以节省流量。
+&lt;/code&gt;&lt;/p
       
     
     </summary>
@@ -315,9 +315,9 @@
       <category term="JVM" scheme="http://yoursite.com/categories/JVM/"/>
     
     
-      <category term="JVM" scheme="http://yoursite.com/tags/JVM/"/>
-    
       <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
+    
+      <category term="JVM" scheme="http://yoursite.com/tags/JVM/"/>
     
   </entry>
   
@@ -344,9 +344,9 @@
       <category term="JVM" scheme="http://yoursite.com/categories/JVM/"/>
     
     
-      <category term="JVM" scheme="http://yoursite.com/tags/JVM/"/>
-    
       <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
+    
+      <category term="JVM" scheme="http://yoursite.com/tags/JVM/"/>
     
   </entry>
   
