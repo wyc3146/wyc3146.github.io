@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="Hogwarts">
 <meta property="og:description" content="ssh是secure shell的缩写，是专为远程登录会话和其他网络服务提供安全性的协议。传统的网络服务协议，如ftp、telnet等都是通过明文传输数据，是不安全的。ssh可以把你的传输数据进行加密，并且数据是经过压缩的可以节省流量。 验证方式ssh有两种验证方式，分别是口令验证和密钥验证。  口令验证就是通过账号和口令登录远程机器。  密钥验证是生成一个密钥对，将公钥放到远程服务器上，把私钥放">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-15T03:01:34.477Z">
+<meta property="og:updated_time" content="2018-09-15T03:03:12.627Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ssh端口转发">
 <meta name="twitter:description" content="ssh是secure shell的缩写，是专为远程登录会话和其他网络服务提供安全性的协议。传统的网络服务协议，如ftp、telnet等都是通过明文传输数据，是不安全的。ssh可以把你的传输数据进行加密，并且数据是经过压缩的可以节省流量。 验证方式ssh有两种验证方式，分别是口令验证和密钥验证。  口令验证就是通过账号和口令登录远程机器。  密钥验证是生成一个密钥对，将公钥放到远程服务器上，把私钥放">
@@ -383,8 +383,8 @@
 <li><p>密钥验证是生成一个密钥对，将公钥放到远程服务器上，把私钥放在自己本地机器上。登录的时候远程主机会发来一串随机字符串，本地用私钥加密发回去，如果远程主机用公钥解密成功则认为这个用户合法，直接就可以登录成功。</p>
 </li>
 </ul>
-<h3 id="最简单的用法"><a href="#最简单的用法" class="headerlink" title="最简单的用法"></a>最简单的用法</h3><p>ssh \&lt;user>@\&lt;host></p>
-<p>user是想要登录远程主机的用户名，host是远程主机的地址，ssh默认使用的端口是22，如果想要指定端口可以用-p \&lt;port>来指定，建议远程服务器修改一下ssh端口防止被攻击。下面是一个示例</p>
+<h3 id="最简单的用法"><a href="#最简单的用法" class="headerlink" title="最简单的用法"></a>最简单的用法</h3><p>ssh &lt;user>@&lt;host></p>
+<p>user是想要登录远程主机的用户名，host是远程主机的地址，ssh默认使用的端口是22，如果想要指定端口可以用-p &lt;port>来指定，建议远程服务器修改一下ssh端口防止被攻击。下面是一个示例</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@88.88.88.88</span><br></pre></td></tr></table></figure>
 <p>连接远程机器88.88.88.88，并用root用户登录。</p>
 <h3 id="远程执行命令"><a href="#远程执行命令" class="headerlink" title="远程执行命令"></a>远程执行命令</h3><p>ssh可以登录到指定主机，然后执行命令。也可以在ssh命令后跟想要执行的命令，这样命令执行结束后就会直接退出登录。</p>
