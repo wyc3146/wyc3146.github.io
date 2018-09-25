@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="Hogwarts">
 <meta property="og:description" content="ssh是secure shell的缩写，是专为远程登录会话和其他网络服务提供安全性的协议。传统的网络服务协议，如ftp、telnet等都是通过明文传输数据，是不安全的。ssh可以把你的传输数据进行加密，并且数据是经过压缩的可以节省流量。 验证方式ssh有两种验证方式，分别是口令验证和密钥验证。  口令验证就是通过账号和口令登录远程机器。  密钥验证是生成一个密钥对，将公钥放到远程服务器上，把私钥放">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-15T07:19:36.661Z">
+<meta property="og:updated_time" content="2018-09-15T07:35:18.312Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ssh端口转发">
 <meta name="twitter:description" content="ssh是secure shell的缩写，是专为远程登录会话和其他网络服务提供安全性的协议。传统的网络服务协议，如ftp、telnet等都是通过明文传输数据，是不安全的。ssh可以把你的传输数据进行加密，并且数据是经过压缩的可以节省流量。 验证方式ssh有两种验证方式，分别是口令验证和密钥验证。  口令验证就是通过账号和口令登录远程机器。  密钥验证是生成一个密钥对，将公钥放到远程服务器上，把私钥放">
@@ -404,6 +404,8 @@
 <p>这样还不够，我们希望能在后台运行，而不用一只维持一个打开的窗口。可以用-f参数指定。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -fNR 7777:10.0.0.5:7000 root@88.88.88.88 -p4477</span><br></pre></td></tr></table></figure>
 <p>这样就可以操作本地shell或者关闭当前shell，后台运行的端口转发通道还是开着的。想要关闭可以用kill命令把进程杀死。</p>
+<p>ssh默认有没有设置心跳，过一段时间不操作后会超时断开。可以通过配置来实现心跳，不让连接断开。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/ssh/sshd_config</span><br><span class="line"><span class="meta">#</span> ClientAliveInterval设置为60，表示每60s向客户端发送一个消息</span><br><span class="line"><span class="meta">#</span> ClientAliveCountMax设置为3，表示客户端没有响应次数超过3次就断开连接</span><br><span class="line">service sshd restart</span><br></pre></td></tr></table></figure>
 
       
     </div>

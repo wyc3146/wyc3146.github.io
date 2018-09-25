@@ -90,7 +90,7 @@
 <meta property="og:description" content="实用型，会影响运行时环境 堆大小   -Xms            初始堆大小，默认内存的1/64(1GB) -Xmx            最大堆大小，默认物理内存的1/4 (&amp;lt;1GB) -Xmn            年轻带大小 -XX:MinHeapFreeRatio=40        FullGC后如果老年代剩余容量小于40%则扩容,默认是40 -XX:MaxHeapFreeRa">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://wyc3146.github.io/img/jvm_gc_option.jpg">
-<meta property="og:updated_time" content="2018-08-28T07:14:51.207Z">
+<meta property="og:updated_time" content="2018-09-25T08:16:31.305Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM常用参数集合">
 <meta name="twitter:description" content="实用型，会影响运行时环境 堆大小   -Xms            初始堆大小，默认内存的1/64(1GB) -Xmx            最大堆大小，默认物理内存的1/4 (&amp;lt;1GB) -Xmn            年轻带大小 -XX:MinHeapFreeRatio=40        FullGC后如果老年代剩余容量小于40%则扩容,默认是40 -XX:MaxHeapFreeRa">
@@ -419,6 +419,7 @@
 <p>-XX:-UseAdaptiveSizePolicyWithSystemGC</p>
 <p>-agentlib:hprof=cpu=times,interval=10    采样统计各个方法占用cpu时长</p>
 <p>-XX:-UseGCOverheadLimit            提前预测JVM是否OOM</p>
+<p>-XX:+AlwaysPreTouch                如果不关心JVM的启动时间，可以加这个参数，让JVM所需的内存在启动阶段就完全申请分配好。像linux系统，JVM在启动时并不会马上把需要的内存全部分配给JVM，而是等到JVM访问这些内存地址的时候才会真正分配，通过这个参数可以让操作系统启动阶段就真正分配内存，提升运行时效率。</p>
 <h3 id="辅助型，辅助排查"><a href="#辅助型，辅助排查" class="headerlink" title="辅助型，辅助排查"></a>辅助型，辅助排查</h3><blockquote>
 <p>追踪初始化参数</p>
 </blockquote>
